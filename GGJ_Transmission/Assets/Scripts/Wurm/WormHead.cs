@@ -18,6 +18,8 @@ public class WormHead : MonoBehaviour
 
     //Objects
     public GameObject child;
+    public Sprite childSprite;
+    public Sprite endSprite;
     private GameObject newParent;
 
     //Components
@@ -29,8 +31,6 @@ public class WormHead : MonoBehaviour
         newParent = gameObject;
         rb = GetComponent<Rigidbody2D>();
 
-
-
         for(int i=0; i<childNum; i++)
         {
             GameObject nextChild = Instantiate(child, new Vector3((i+1) * distMin *(-1), 0, 0) + transform.position, Quaternion.identity);
@@ -38,6 +38,15 @@ public class WormHead : MonoBehaviour
             nextChild.GetComponent<WormChild>().speed = speed;
             nextChild.GetComponent<WormChild>().distMin = distMin;
             nextChild.GetComponent<WormChild>().distMax = distMax;
+
+            if(i<childNum-1)
+            {
+                nextChild.GetComponent<WormChild>().mySprite = childSprite;
+            }
+            else
+            {
+                nextChild.GetComponent<WormChild>().mySprite = endSprite;
+            }
 
             newParent = nextChild;
         }
