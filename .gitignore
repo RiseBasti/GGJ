@@ -1,9 +1,9 @@
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/Assets/AssetStoreTools*
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 /.vs/
@@ -22,10 +22,11 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
+*.opendb
+*.db
 
 # Unity3D generated meta files
 *.pidb.meta
-*.pdb.meta
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
@@ -33,3 +34,10 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Minne Sang/.vs/Minne Sang/v15/Server/sqlite3/storage.ide
+Minne Sang/.vs/Minne Sang/v15/sqlite3/storage.ide
+Minne Sang/.vs/Minne Sang/v15/Server/sqlite3/storage.ide
+Minne Sang/.vs/Minne Sang/v15/sqlite3/storage.ide
+Minne Sang/.vs/Minne Sang/v15/sqlite3/storage.ide
+Minne Sang/.vs/Minne Sang/v15/sqlite3/storage.ide
+Minne Sang/Assets/Sounds/Interactive/Door.meta~HEAD.meta
