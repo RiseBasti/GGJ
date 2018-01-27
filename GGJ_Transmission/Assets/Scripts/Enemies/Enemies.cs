@@ -4,90 +4,71 @@ using UnityEngine;
 
 public class Enemies : MonoBehaviour
 {
+    //Variables
+    //Stats
+    [HideInInspector] public string EnemyTyp;
 
-    //Player Wurm
-    private GameObject PW;
-    private WormHead WH;
-    BoxCollider2D BC;
-    AnimationClip anim;
-    private Animation Ator;
-    Animator anima;
-   
+
+    //Script
     [HideInInspector] public float eatSpeed = 1;
-
-    //direcrion
     Vector2 direction;
-
-    //Eigenschaften
-    public string EnemyTyp;
-
     [HideInInspector] public float EnemiesSize;
-    [HideInInspector]  public float MaxSize;
-
-    private int EnemyHP;
-
+    [HideInInspector] public float MaxSize;
     private float EnemySpeed;
-    private Rigidbody2D rb;
+    private float rotation = 0;
 
-    private GameObject EnemyTarget;
-
-    //Sprite
-    private SpriteRenderer SR;
-    Color color = new Color(1, 1, 1);
-
-    //Speed
-    private float MaxVelocity;
-
-    //boolean
     public bool isEat = false;
     private bool hpRestored = false;
     public bool boost = true;
     public bool Spawning = true;
 
+    //Objects
+    private GameObject playerWorm;
+    private WormHead wormHead;
+
+    private GameObject EnemyTarget;
+    
+
+    //Components
+    BoxCollider2D boxCol;
+    AnimationClip anim;
+    private Animation Ator;
+    Animator anima;
+
+    private Rigidbody2D rb;
+
+    private SpriteRenderer sr;
+    private Color enemyColor = new Color(1, 1, 1);
+
+
     // Use this for initialization
-
-
-
-    /*  public Enemies(string inTyp, Vector2  inPos) {
-
-          transform.localPosition = inPos;
-
-
-
-      }*/
-
-
-
     void Start()
     {
-        PW = GameObject.FindGameObjectWithTag("WormHead");
+
+        playerWorm = GameObject.FindGameObjectWithTag("WormHead");
+        wormHead = playerWorm.GetComponent<WormHead>();
 
         EnemyTarget = GameObject.FindGameObjectWithTag("Zelle");
 
-        direction = new Vector2(EnemyTarget.transform.position.x - transform.position.x, EnemyTarget.transform.position.y - transform.position.y).normalized;
+        direction = new Vector2(EnemyTarget.transform.position.x + Random.Range(-5, 5), EnemyTarget.transform.position.y + Random.Range(-3, 3)).normalized;
 
-        BC = gameObject.GetComponent<BoxCollider2D>();
+        boxCol = gameObject.GetComponent<BoxCollider2D>();
 
-        WH = PW.GetComponent<WormHead>();
-
-        randomizer();
+        
         Ator = gameObject.GetComponent<Animation>();
         anima = gameObject.GetComponent<Animator>();
 
         rb = GetComponent<Rigidbody2D>();
         // Size = gameObject.transform.lo;
 
-        SR = gameObject.GetComponent<SpriteRenderer>();
-        SR.color = color;
+        sr = gameObject.GetComponent<SpriteRenderer>();
 
+        randomizer();
 
         Spawning = true;
-        color.a = 0;
-        // color = new Color(255,255,255);
+        enemyColor.a = 0;
 
         Rotation();
-
-
     }
 
 
@@ -106,20 +87,16 @@ public class Enemies : MonoBehaviour
 
     void Rotation()
     {
+        rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        float AngleRad = Mathf.Atan2(EnemyTarget.transform.position.y - transform.position.y, EnemyTarget.transform.position.x - transform.position.x);
-        float AngleDeg = (180 / Mathf.PI) * AngleRad;
-        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg - 90);
-
-
-
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation-90);
     }
     void Detection()
     {
 
         float d = Vector2.Distance(EnemyTarget.transform.position, transform.position);
 
-        if (d < 1)
+        if (d < 10)
         {
 
             Rotation();
@@ -129,9 +106,7 @@ public class Enemies : MonoBehaviour
     }
     void Speed()
     {
-
         rb.MovePosition(rb.position + direction * EnemySpeed * Time.deltaTime);
-
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -139,7 +114,7 @@ public class Enemies : MonoBehaviour
         {
             EnemyTyp = "Mutation";
             transform.parent = col.transform;
-            WH.GotDmg(MaxSize);
+            wormHead.GotDmg(MaxSize);
 
         }
     }
@@ -151,70 +126,64 @@ public class Enemies : MonoBehaviour
         {
 
             case "Ant":
-
-                MaxVelocity = 0.1f;
                 MaxSize = 1f;
-                EnemyHP = 1;
                 EnemySpeed = 1f;
                 anima.SetBool("isAnt", true);
-                color = new Color(1, 0, 0);
+                enemyColor = new Color(1, 0, 0);
+                boxCol.size = new Vector2(0.25f,0.4f);
                 break;
 
             case "Moth":
-                MaxVelocity = 0.3f;
                 MaxSize = 3f;
-                EnemyHP = 1;
-                EnemySpeed = 2;
+                EnemySpeed = 2f;
                 anima.SetBool("isMoth", true);
-                color = new Color(0.9f, 0.5f, 0.1f);
+                enemyColor = new Color(0.9f, 0.5f, 0.1f);
+                boxCol.size = new Vector2(0.9f, 0.4f);
+                boxCol.offset = new Vector2(0, -0.05f);
                 break;
 
 
             case "Spikeboll":
-                MaxVelocity = 0.1f;
                 MaxSize = 3f;
-                EnemyHP = 1;
                 EnemySpeed = 1;
                 anima.SetBool("isSpikeboll", true);
-                color = new Color(0.9f, 0.8f, 0);
+                enemyColor = new Color(0.9f, 0.8f, 0);
+                boxCol.size = new Vector2(0.35f, 0.35f);
                 break;
 
 
             case "Mushroom":
-                MaxVelocity = 0;
                 MaxSize = 3f;
-                EnemyHP = 1;
                 EnemySpeed = 0f;
                 anima.SetBool("isMushroom", true);
-                color = new Color(0.9f, 0.5f, 0.1f);
+                enemyColor = new Color(0.9f, 0.5f, 0.1f);
+                boxCol.size = new Vector2(0.5f, 0.5f);
                 break;
 
             case "Wasps":
-                MaxVelocity = 0.3f;
                 MaxSize = 3f;
-                EnemyHP = 1;
                 EnemySpeed = 1;
                 anima.SetBool("isWasps", true);
-                color = new Color(1f, 1f, 0.1f);
+                enemyColor = new Color(1f, 1f, 0.1f);
+                boxCol.size = new Vector2(0.3f, 0.65f);
                 break;
 
             case "Mutation":
-                MaxVelocity = 0f;
-                EnemyHP = 1;
                 EnemySpeed = 0f;
                 anima.SetBool("isMutatet", true);
-                SR.color = color;
+                sr.color = enemyColor;
+                boxCol.size = new Vector2(1, 1);
+                boxCol.offset = new Vector2(0, 0);
                 break;
 
 
             case "Beatle":
                 gameObject.tag = "Item";
-                MaxVelocity = 0f;
                 MaxSize = 1f;
-                EnemyHP = 1;
-                EnemySpeed = 0f;
+                EnemySpeed = 1f;
                 anima.SetBool("isBeatle", true);
-                color = new Color(0.13f, 0.4f, 1f);
+                enemyColor = new Color(0.13f, 0.4f, 1f);
+                boxCol.size = new Vector2(1, 1);
                 break;
 
 
@@ -226,39 +195,25 @@ public class Enemies : MonoBehaviour
     }
     void Fadein()
     {
-
-
-
-
         if (Spawning == true)
-
         {
-
-            color.a += 0.01f;
+            enemyColor.a += 0.01f;
             EnemiesSize += 0.01f;
-            BC.enabled = false;
-
-
-
+            boxCol.enabled = false;
 
             if (EnemiesSize > MaxSize)
             {
-                color.a = 0;
+                enemyColor.a = 0;
                 EnemiesSize = MaxSize;
                 Spawning = false;
             }
-
         }
         else
         {
-            BC.enabled = true;
+            boxCol.enabled = true;
             Speed();
             Detection();
         }
-
-
-
-
     }
     void randomizer()
     {
@@ -317,7 +272,7 @@ public class Enemies : MonoBehaviour
         {
             if (!hpRestored)
             {
-                WH.GotHealed(MaxSize);
+                wormHead.GotHealed(MaxSize);
                 hpRestored = true;
             }
 
