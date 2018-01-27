@@ -50,7 +50,7 @@ public class Enemies : MonoBehaviour
 
         EnemyTarget = GameObject.FindGameObjectWithTag("Zelle");
 
-        direction = new Vector2(EnemyTarget.transform.position.x + Random.Range(-5, 5), EnemyTarget.transform.position.y + Random.Range(-3, 3)).normalized;
+        direction = new Vector2((EnemyTarget.transform.position.x + Random.Range(-5, 5)) - transform.position.x, (EnemyTarget.transform.position.y + Random.Range(-3, 3)) - transform.position.y).normalized;
 
         boxCol = gameObject.GetComponent<BoxCollider2D>();
 
@@ -127,7 +127,7 @@ public class Enemies : MonoBehaviour
 
             case "Ant":
                 MaxSize = 1f;
-                EnemySpeed = 1f;
+                EnemySpeed = 2f;
                 anima.SetBool("isAnt", true);
                 enemyColor = new Color(1, 0, 0);
                 boxCol.size = new Vector2(0.25f,0.4f);
@@ -135,7 +135,7 @@ public class Enemies : MonoBehaviour
 
             case "Moth":
                 MaxSize = 3f;
-                EnemySpeed = 2f;
+                EnemySpeed = 2.5f;
                 anima.SetBool("isMoth", true);
                 enemyColor = new Color(0.9f, 0.5f, 0.1f);
                 boxCol.size = new Vector2(0.9f, 0.4f);
@@ -145,7 +145,7 @@ public class Enemies : MonoBehaviour
 
             case "Spikeboll":
                 MaxSize = 3f;
-                EnemySpeed = 1;
+                EnemySpeed = 1.5f;
                 anima.SetBool("isSpikeboll", true);
                 enemyColor = new Color(0.9f, 0.8f, 0);
                 boxCol.size = new Vector2(0.35f, 0.35f);
@@ -162,7 +162,7 @@ public class Enemies : MonoBehaviour
 
             case "Wasps":
                 MaxSize = 3f;
-                EnemySpeed = 1;
+                EnemySpeed = 3f;
                 anima.SetBool("isWasps", true);
                 enemyColor = new Color(1f, 1f, 0.1f);
                 boxCol.size = new Vector2(0.3f, 0.65f);
@@ -180,7 +180,7 @@ public class Enemies : MonoBehaviour
             case "Beatle":
                 gameObject.tag = "Item";
                 MaxSize = 1f;
-                EnemySpeed = 1f;
+                EnemySpeed = 4f;
                 anima.SetBool("isBeatle", true);
                 enemyColor = new Color(0.13f, 0.4f, 1f);
                 boxCol.size = new Vector2(1, 1);
@@ -219,7 +219,7 @@ public class Enemies : MonoBehaviour
     {
 
 
-        int R = Random.Range(0, 30);
+        int R = Random.Range(0, 28);
 
         if (R < 5)
         {
@@ -255,7 +255,7 @@ public class Enemies : MonoBehaviour
 
         }
 
-        if (R > 25 && R < 30)
+        if (R > 25 && R < 28)
         {
             EnemyTyp = "Beatle";
 
