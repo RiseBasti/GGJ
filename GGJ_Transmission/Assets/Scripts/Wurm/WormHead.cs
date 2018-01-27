@@ -12,17 +12,14 @@ public class WormHead : MonoBehaviour
     private float distMin = 0.45f;
     private float distMax = 0.65f;
 
-    //Buffs, Debuffs
-    [HideInInspector] public int enemy1 = 0;
-    [HideInInspector] public int enemy2 = 0;
-    [HideInInspector] public int enemy3 = 0;
-    [HideInInspector] public int enemy4 = 0;
-    [HideInInspector] public int enemy5 = 0;
+    private int contamination = 0;
 
 
     //Script
     Vector2 direction = new Vector2(0, 0);
     float rotation = 0;
+
+    private bool dead = false;
 
     //Objects
     public GameObject child;
@@ -46,8 +43,8 @@ public class WormHead : MonoBehaviour
             //AllChilds
             GameObject newChild = Instantiate(child, new Vector3((i+1) * distMin *(-1), 0, 0) + transform.position, Quaternion.identity);
             newChild.GetComponent<WormChild>().parent = newParent;
-            newChild.GetComponent<WormCollision>().wormHead = GetComponent<WormHead>();
             newChild.GetComponent<WormChild>().speed = speed;
+            newChild.GetComponent<SpriteRenderer>().sortingOrder = -i;
 
             if (i<childNum-1)
             {
@@ -86,5 +83,18 @@ public class WormHead : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rotation);
         rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
         
+    }
+
+    public void gotDmg(int cont)
+    {
+        contamination += cont;
+        if(contamination>=hp)
+        {
+            dead = true;
+        }
+    }
+    public void gotHealed()
+    {
+
     }
 }

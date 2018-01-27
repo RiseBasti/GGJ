@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 1987093100563790, guid: 8658ea12db3cf7040b3968cedd02d1c6, type: 2}
-  childSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  endSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  childSprite: {fileID: 21300000, guid: 6829a2b6911bff04baa850d0ae9141ee, type: 3}
+  endSprite: {fileID: 21300000, guid: aecf386bb6839484c8e4a39e46dadf39, type: 3}
 --- !u!212 &212780576751253346
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -123,10 +123,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e9dfda9267ed68f4aacc20ce549d0a31, type: 3}
+  m_SortingLayerID: -2004220403
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 4185ea636d740654f88da519372f03de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
