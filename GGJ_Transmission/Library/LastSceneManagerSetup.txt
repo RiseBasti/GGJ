@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Pascal.unity
+- path: Assets/Scenes/Roman.unity
   isLoaded: 1
   isActive: 1

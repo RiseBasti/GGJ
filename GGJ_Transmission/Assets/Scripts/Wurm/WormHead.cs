@@ -26,8 +26,6 @@ public class WormHead : MonoBehaviour
 
     //Objects
     public GameObject child;
-    public Sprite midSprite;
-    public Sprite endSprite;
     private GameObject newParent;
 
     //Components
@@ -55,14 +53,14 @@ public class WormHead : MonoBehaviour
             if (i<childNum-1)
             {
                 //MiddleChilds
-                newChild.GetComponent<WormChild>().mySprite = midSprite;
+                newChild.GetComponent<WormChild>().spriteEnd = false;
                 newChild.GetComponent<WormChild>().distMin = distMin;
                 newChild.GetComponent<WormChild>().distMax = distMax;
             }
             else
             {
                 //LastChild
-                newChild.GetComponent<WormChild>().mySprite = endSprite;
+                newChild.GetComponent<WormChild>().spriteEnd = true;
                 newChild.GetComponent<WormChild>().distMin = distMin+0.1f;
                 newChild.GetComponent<WormChild>().distMax = distMax+0.1f;
             }

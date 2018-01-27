@@ -16,7 +16,7 @@ public class WormChild : MonoBehaviour
     private Vector2 direction = new Vector2(0,0);
     private float rotation = 0;
 
-    [HideInInspector] public Sprite mySprite;
+    [HideInInspector] public bool spriteEnd;
     [HideInInspector] public Color dmgColor = new Color(0, 255, 0, 255);
 
     //Objects
@@ -26,7 +26,7 @@ public class WormChild : MonoBehaviour
     //Components
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-
+    private Animator animator;
 
 
 	// Use this for initialization
@@ -34,8 +34,7 @@ public class WormChild : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-
-        sr.sprite = mySprite;
+        animator.SetBool("end", spriteEnd);
 	}
 	
 	// Update is called once per frame
