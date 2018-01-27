@@ -154,9 +154,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114250963812352334, guid: 08fd4444257824644bf133fefee350c0,
         type: 2}
+      propertyPath: PW
+      value: 
+      objectReference: {fileID: 1620313557}
+    - target: {fileID: 114250963812352334, guid: 08fd4444257824644bf133fefee350c0,
+        type: 2}
       propertyPath: EnemyTarget
       value: 
       objectReference: {fileID: 2036556690}
+    - target: {fileID: 50421857913694368, guid: 08fd4444257824644bf133fefee350c0,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08fd4444257824644bf133fefee350c0, type: 2}
   m_IsPrefabParent: 0
@@ -396,6 +406,11 @@ MonoBehaviour:
   Enemy: {fileID: 847486645}
   Camera: {fileID: 823381944}
   Timer: 120
+--- !u!1 &1620313557 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1358203604536516, guid: 3804ce927272b834790b5d1983351aef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1309332672}
 --- !u!1 &2036556690
 GameObject:
   m_ObjectHideFlags: 0

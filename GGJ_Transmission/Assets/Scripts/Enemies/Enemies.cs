@@ -6,9 +6,10 @@ public class Enemies : MonoBehaviour {
 
     //Player Wurm
     public GameObject PW;
-
     private WormHead WH;
 
+    //direcrion
+    Vector2 direction;
 
     //Eigenschaften
     public string EnemyTyp;
@@ -47,6 +48,7 @@ public class Enemies : MonoBehaviour {
 
 
     void Start () {
+        Vector2 direction = new Vector2(EnemyTarget.transform.position.x, EnemyTarget.transform.position.y).normalized;
 
         WH = PW.GetComponent<WormHead>();
         
@@ -90,6 +92,7 @@ public class Enemies : MonoBehaviour {
         this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
 
 
+
     }
     void Detection() {
 
@@ -111,14 +114,15 @@ public class Enemies : MonoBehaviour {
         float RVY = rb.velocity.y;
 
         if (RVX < MaxVelocity || RVX > -MaxVelocity) {
-            rb.AddForce(transform.right * EnemySpeed);
+            rb.MovePosition(rb.position + direction * EnemySpeed );
             //boost = false;
             //rb.velocity = new Vector2(0, RVY);
         }
 
         if (RVY < MaxVelocity || RVY > -MaxVelocity)
         {
-            rb.AddForce(transform.right * EnemySpeed);
+           
+            rb.MovePosition(rb.position + direction * EnemySpeed);
             // boost = false;
             // rb.velocity = new Vector2(RVX, 0);
         }
@@ -133,13 +137,13 @@ public class Enemies : MonoBehaviour {
     }
 
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Worm"&& EnemyTyp != "Mutation") {
 
             EnemyTyp = "Mutation";
             transform.parent = col.transform;
-            WH.gotDmg(MaxSize);
+            WH.GotDmg(MaxSize);
 
         }
     }
