@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject Camera;
     public float Timer = 120;
 
-    float timer = 120;
+    float timer = 10;
 
 
 
@@ -32,11 +32,11 @@ public class EnemySpawner : MonoBehaviour {
 
 
 
-        timer -= 1;
+        timer -= Time.deltaTime;
 
         if (timer <= 0) {
             Spawner();
-            timer = 120;
+            timer = 10;
 
         }
 
