@@ -27,10 +27,10 @@ public class WormCollision : MonoBehaviour
         {
             switch (coll.gameObject.GetComponent<Enemies>().EnemyTyp)
             {
-                case 1:
+                case "Big":
                     wormHead.enemy1++;
                     break;
-                case 2:
+                case "Small":
                     wormHead.enemy2++;
                     break;
                 default:

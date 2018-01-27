@@ -8,12 +8,12 @@ public class Enemies : MonoBehaviour {
 
 
     //Eigenschaften
-    public string EmemyTyp = "Big";
-    public float EnemiesSize = 0;
-    Vector2 Size;
-    public float MaxSize = 1;
-    public int EnemyHP = 1;
-    public float EnemySpeed = 0.5f;
+    public string EnemyTyp;
+    private float EnemiesSize;
+   
+    private float MaxSize;
+    private int EnemyHP;
+    private float EnemySpeed;
     private Rigidbody2D rb;
     public Transform EnemyTarget;
     Sprite Visual;
@@ -22,8 +22,8 @@ public class Enemies : MonoBehaviour {
     Color Color = Color.white;
 
     //Speed
-    public float MaxVelocity = 0.5f;
-    public float MinVelocity = -0.5f;
+    private float MaxVelocity = 0.5f;
+    private float MinVelocity = -0.5f;
     //boolean
     public bool boost = true;
     public bool Spawning = true;
@@ -129,7 +129,7 @@ public class Enemies : MonoBehaviour {
     {
         if (col.gameObject.tag == "Wurm") {
 
-            EmemyTyp = "Mutation";
+            EnemyTyp = "Mutation";
 
         }
     }
@@ -138,32 +138,41 @@ public class Enemies : MonoBehaviour {
     void Typs() {
 
 
+        switch (EnemyTyp) {
 
-        if (EmemyTyp == "Smale")
-        {
+            case "Small":
 
-            // Visual = Resources.Load<Sprite>();
-            MaxSize = 0.5f;
-            EnemyHP = 1;
-            EnemySpeed = 1f;
-    
- 
+                MaxSize = 0.5f;
+                EnemyHP = 1;
+                EnemySpeed = 1f;
+                break;
 
-}
-        if (EmemyTyp == "Big")
-        {
-            MaxSize = 5f;
-            EnemyHP = 1;
-            EnemySpeed = 0.5f;
-            //Visual = Resources.Load<Sprite>();
+            case "Big":
+
+                MaxSize = 5f;
+                EnemyHP = 1;
+                EnemySpeed = 0.5f;
+                break;
+
+            case "Mutation":
+
+                MaxSize = 1f;
+                EnemyHP = 1;
+                EnemySpeed = 0.5f;
+                break;
+
+            default: 
+                break;
+
+
+
+         
+
         }
-        if (EmemyTyp == "Mutation")
-        {
-            MaxSize = 1f;
-            EnemyHP = 1;
-            EnemySpeed = 0.5f;
-            //Visual = Resources.Load<Sprite>();
-        }
+
+
+
+
 
 
 
