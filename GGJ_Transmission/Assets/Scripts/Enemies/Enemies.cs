@@ -19,8 +19,13 @@ public class Enemies : MonoBehaviour
 
     //Eigenschaften
     public string EnemyTyp;
+<<<<<<< HEAD
+    [HideInInspector] public float EnemiesSize;
+   
+=======
     private float EnemiesSize;
 
+>>>>>>> 52d2c2ea6be975ae4d879a9843617047228d1ff8
     private float MaxSize;
     private int EnemyHP;
 
@@ -63,14 +68,9 @@ public class Enemies : MonoBehaviour
 
         WH = PW.GetComponent<WormHead>();
 
-
         randomizer();
         Ator = gameObject.GetComponent<Animation>();
         anima = gameObject.GetComponent<Animator>();
-
-
-
-
 
         rb = GetComponent<Rigidbody2D>();
         // Size = gameObject.transform.lo;
@@ -125,7 +125,6 @@ public class Enemies : MonoBehaviour
         }
 
     }
-
     void Speed()
     {
 
@@ -317,7 +316,7 @@ public class Enemies : MonoBehaviour
         if (isEat)
         {
 
-            EnemiesSize -= 0.1f;
+            EnemiesSize -= Time.deltaTime;
 
             if (EnemiesSize <= 0)
             {
@@ -325,8 +324,6 @@ public class Enemies : MonoBehaviour
             }
 
         }
-
-
 
     }
 
