@@ -24,8 +24,6 @@ public class WormHead : MonoBehaviour
     [HideInInspector] public Color dmgColor;
     [HideInInspector] public float pulsAlpha = 255;
 
-    private bool dead = false;
-
     //Objects
     public GameObject child;
     private GameObject newParent;
@@ -79,10 +77,8 @@ public class WormHead : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
-        if (!dead)
-        {
-            Move();
-        }
+        Move();
+
         DmgColor();
     }
 
@@ -109,10 +105,6 @@ public class WormHead : MonoBehaviour
     public void GotDmg(float cont)
     {
         contamination += cont;
-        if(contamination>=hp)
-        {
-            dead = true;
-        }
     }
     public void GotHealed(float cont)
     {

@@ -84,12 +84,8 @@ public class Zelle : MonoBehaviour
                 if(!eating && Input.GetAxis("Eat") != 0)
 
                 {
-                    if (collision.tag == "Item")
-                    {
-                        transform.localScale += new Vector3(0.1f, 0.1f, 0);
-                        eatSpeed += 0.1f;
-
-                    }
+                    transform.localScale += new Vector3(0.1f, 0.1f, 0);
+                    eatSpeed += 0.1f;
                     eating = true;
                     enemies.isEat = true;
                     enemies.eatSpeed = eatSpeed;
