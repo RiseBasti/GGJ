@@ -6,13 +6,17 @@ public class Zelle : MonoBehaviour
 {
     //Variables
     //Stats
-    private int hp = 1;
     private float speed = 3;
+    private float eatCD = 3;
 
 
     //Script
-    Vector2 direction = new Vector2(0, 0);
-    float rotation = 0;
+    private Vector2 direction = new Vector2(0, 0);
+    private float rotation = 0;
+
+    private bool eating = false;
+    private float eatTimer = 0;
+    private bool dead = false;
 
     //Objects
 
@@ -31,7 +35,10 @@ public class Zelle : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
-        Move();
+        if (!dead)
+        {
+            Move();
+        }
 	}
 
     private void Move()
@@ -47,7 +54,46 @@ public class Zelle : MonoBehaviour
             rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
 
-        transform.rotation = Quaternion.Euler(0f, 0f, rotation);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation-90);
         rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "Enemy")
+        {
+            Enemies enemies = collision.GetComponent<Enemies>();
+            if(enemies.EnemyTyp == "Mutation")
+            {
+                print(eating);
+                if (eating)
+                {
+                    print(eatTimer);
+                    eatTimer -= Time.deltaTime;
+                    if(eatTimer<=0)
+                    {
+                        eating = false;
+                    }
+                }
+                else
+                {
+                    if(Input.GetAxis("Eat") != 0)
+                    {
+                        eating = true;
+                        enemies.isEat = true;
+                        eatTimer = eatCD;
+                        collision.transform.position = transform.position;
+                        collision.transform.parent = transform;
+                    }
+                }
+
+            }
+            else
+            {
+                enemies.EnemyTyp = "Mutation";
+                collision.transform.parent = transform;
+                dead = true;
+            }
+        }
     }
 }

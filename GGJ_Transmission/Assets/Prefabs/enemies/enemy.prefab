@@ -51,7 +51,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054855239165560}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -117,9 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c956e795df753f4286f9d2fca692f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PW: {fileID: 0}
+  PW: {fileID: 1358203604536516, guid: 3804ce927272b834790b5d1983351aef, type: 2}
   EnemyTyp: 
-  EnemyTarget: {fileID: 0}
+  EnemyTarget: {fileID: 1150104299687024, guid: 594ee45a26bb3314d890d6cf12e434f3,
+    type: 2}
   boost: 1
   Spawning: 1
 --- !u!212 &212715846370936304
