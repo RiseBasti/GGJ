@@ -89,7 +89,7 @@ public class Enemies : MonoBehaviour
             deathTimer -= Time.deltaTime;
             if(deathTimer<=0)
             {
-                print(deathTimer);
+                //print(deathTimer);
                 isEat = true;
                 hpRestored = true;
             }

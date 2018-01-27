@@ -24,7 +24,7 @@ public class WormHead : MonoBehaviour
     [HideInInspector] public Color dmgColor;
     [HideInInspector] public float pulsAlpha = 255;
 
-    private bool dead = false;
+    public bool dead = false;
 
     //Objects
     public GameObject child;
