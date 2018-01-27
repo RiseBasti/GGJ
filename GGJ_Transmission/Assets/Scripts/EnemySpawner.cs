@@ -5,45 +5,46 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
 
+   // Enemies[] enemies;
 
 
-
+     int MaxEnemies = 10;
     public GameObject Enemy;
     public GameObject Camera;
     public float Timer = 120;
-    private float CountDown = 1;
+
     float timer = 120;
 
 
 
     // Use this for initialization
     void Start () {
-		
-	}
+        //enemies = new Enemies[MaxEnemies];
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
+
         
 
-         timer -= 1;
+
+
+        timer -= 1;
 
         if (timer <= 0) {
             Spawner();
-            timer = 120;
+            timer = 10;
 
         }
-
-
-
-       
-
 
     }
 
 
     void Spawner() {
-
+        
 
         float SpawnArealXmin = Camera.transform.position.x - 10;
         float SpawnArealXmax = Camera.transform.position.x + 10;
@@ -58,5 +59,15 @@ public class EnemySpawner : MonoBehaviour {
 
         Instantiate(Enemy, SpawnAreal,transform.rotation);
 
-    }
+
+      /*  for (int i = 0; i < MaxEnemies; ++i) {
+            
+            if (enemies[i] != null) {
+
+                enemies[i] = new Enemies("Big", SpawnAreal);
+                Debug.Log("fuck");
+            */
+        }
+
+    
 }
