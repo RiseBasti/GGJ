@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemies : MonoBehaviour {
+public class Enemies : MonoBehaviour
+{
 
     //Player Wurm
     public GameObject PW;
@@ -11,6 +12,7 @@ public class Enemies : MonoBehaviour {
     AnimationClip anim;
     private Animation Ator;
     Animator anima;
+   
 
     //direcrion
     Vector2 direction;
@@ -18,18 +20,18 @@ public class Enemies : MonoBehaviour {
     //Eigenschaften
     public string EnemyTyp;
     private float EnemiesSize;
-   
+
     private float MaxSize;
     private int EnemyHP;
 
     private float EnemySpeed;
     private Rigidbody2D rb;
-   
+
     public GameObject EnemyTarget;
-    
+
     //Sprite
     private SpriteRenderer SR;
-    Color color = new Color(1,1,1);
+    Color color = new Color(1, 1, 1);
 
     //Speed
     private float MaxVelocity;
@@ -38,10 +40,10 @@ public class Enemies : MonoBehaviour {
     public bool isEat = false;
     public bool boost = true;
     public bool Spawning = true;
-    
+
     // Use this for initialization
 
-    
+
 
     /*  public Enemies(string inTyp, Vector2  inPos) {
 
@@ -53,13 +55,14 @@ public class Enemies : MonoBehaviour {
 
 
 
-    void Start () {
-       direction = new Vector2(EnemyTarget.transform.position.x-transform.position.x, EnemyTarget.transform.position.y - transform.position.y).normalized;
+    void Start()
+    {
+        direction = new Vector2(EnemyTarget.transform.position.x - transform.position.x, EnemyTarget.transform.position.y - transform.position.y).normalized;
 
         BC = gameObject.GetComponent<BoxCollider2D>();
 
         WH = PW.GetComponent<WormHead>();
-        
+
 
         randomizer();
         Ator = gameObject.GetComponent<Animation>();
@@ -70,63 +73,69 @@ public class Enemies : MonoBehaviour {
 
 
         rb = GetComponent<Rigidbody2D>();
-       // Size = gameObject.transform.lo;
+        // Size = gameObject.transform.lo;
 
         SR = gameObject.GetComponent<SpriteRenderer>();
         SR.color = color;
-        
+
 
         Spawning = true;
         color.a = 0;
-       // color = new Color(255,255,255);
-        
-       Rotation();
-         
-        
+        // color = new Color(255,255,255);
+
+        Rotation();
+
+
     }
 
 
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         Deaying();
         Typs();
         transform.localScale = new Vector2(EnemiesSize, EnemiesSize);
         Fadein();
-        
+
 
     }
 
 
-    void Rotation() {
+    void Rotation()
+    {
 
         float AngleRad = Mathf.Atan2(EnemyTarget.transform.position.y - transform.position.y, EnemyTarget.transform.position.x - transform.position.x);
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
-        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg-90);
+        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg - 90);
 
 
 
     }
-    void Detection() {
+    void Detection()
+    {
 
         float d = Vector2.Distance(EnemyTarget.transform.position, transform.position);
 
-        if (d < 1) {
+        if (d < 1)
+        {
 
             Rotation();
 
         }
-    
+
     }
 
-    void Speed() {
- 
-            rb.MovePosition(rb.position + direction * EnemySpeed *Time.deltaTime );
-           
+    void Speed()
+    {
+
+        rb.MovePosition(rb.position + direction * EnemySpeed * Time.deltaTime);
+
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Worm" && EnemyTyp != "Mutation") {
+        if (col.gameObject.tag == "Worm" && EnemyTyp != "Mutation")
+        {
 
             EnemyTyp = "Mutation";
             transform.parent = col.transform;
@@ -134,10 +143,12 @@ public class Enemies : MonoBehaviour {
 
         }
     }
-    void Typs() {
+    void Typs()
+    {
 
 
-        switch (EnemyTyp) {
+        switch (EnemyTyp)
+        {
 
             case "Ant":
 
@@ -165,7 +176,7 @@ public class Enemies : MonoBehaviour {
                 EnemyHP = 1;
                 EnemySpeed = 1;
                 anima.SetBool("isSpikeboll", true);
-                color = new Color(0.9f, 0.8f,0);
+                color = new Color(0.9f, 0.8f, 0);
                 break;
 
 
@@ -193,16 +204,29 @@ public class Enemies : MonoBehaviour {
                 EnemyHP = 1;
                 EnemySpeed = 0f;
                 anima.SetBool("isMutatet", true);
-                SR.color = color; 
+                SR.color = color;
                 break;
 
-            default: 
+
+            case "Beatle":
+                gameObject.tag = "Item";
+                MaxVelocity = 0f;
+                MaxSize = 1f;
+                EnemyHP = 1;
+                EnemySpeed = 0f;
+                anima.SetBool("isBeatle", true);
+                color = new Color(0.13f, 0.4f, 1f);
+                break;
+
+
+            default:
                 break;
 
         }
 
     }
-    void Fadein() {
+    void Fadein()
+    {
 
 
 
@@ -213,7 +237,7 @@ public class Enemies : MonoBehaviour {
 
             color.a += 0.01f;
             EnemiesSize += 0.01f;
-            BC.enabled= false;
+            BC.enabled = false;
 
 
 
@@ -237,10 +261,11 @@ public class Enemies : MonoBehaviour {
 
 
     }
-    void randomizer() {
+    void randomizer()
+    {
 
 
-        int R =  Random.Range(0,25);
+        int R = Random.Range(0, 30);
 
         if (R < 5)
         {
@@ -276,11 +301,21 @@ public class Enemies : MonoBehaviour {
 
         }
 
+        if (R > 25 && R < 30)
+        {
+            EnemyTyp = "Beatle";
+
+
+        }
+
+
 
     }
-    void Deaying() {
+    void Deaying()
+    {
 
-        if (isEat) {
+        if (isEat)
+        {
 
             EnemiesSize -= 0.1f;
 
@@ -295,4 +330,5 @@ public class Enemies : MonoBehaviour {
 
     }
 
+ 
 }
