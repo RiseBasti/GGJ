@@ -7,17 +7,17 @@ public class Level : MonoBehaviour {
 
 
 
-    void Game()
+    public void Game()
 {
         SceneManager.LoadScene("Game");
 }
 
-    void Menu()
+    public void Menu()
     {
         SceneManager.LoadScene("Menu");
     }
 
-    void Quit()
+    public void Quit()
     {
         Quit();
     }

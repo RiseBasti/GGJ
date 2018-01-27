@@ -45,7 +45,11 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 107
+=======
+  controlID: 117
+>>>>>>> ab037e1a25093bf3cc733b8cad75677ed229c029
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -388,19 +392,48 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
+<<<<<<< HEAD
     - Assets/Art/Environment
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Art/Environment
+=======
+<<<<<<< HEAD
+    - Assets/Art
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Art
+=======
+    - Assets/Scripts/Enemies
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Scripts/Enemies
+>>>>>>> 17860e1a3415bda9aaf6b551ee384d91895cf3aa
+>>>>>>> ab037e1a25093bf3cc733b8cad75677ed229c029
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Roman\Documents\Github\GGJ\GGJ_Transmission
   m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
+    scrollPos: {x: 0, y: 4}
+    m_SelectedIDs: 5a270000
+    m_LastClickedID: 10074
+    m_ExpandedIDs: 00000000542700005a2700005c270000f027000000ca9a3bffffff7f
+=======
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: fa270000
     m_LastClickedID: 10234
     m_ExpandedIDs: 000000006e27000074270000762700000c28000000ca9a3bffffff7f
+=======
+    m_SelectedIDs: b62a0000
+    m_LastClickedID: 10934
+    m_ExpandedIDs: 00000000182a00007a2a000000ca9a3bffffff7f
+>>>>>>> 17860e1a3415bda9aaf6b551ee384d91895cf3aa
+>>>>>>> ab037e1a25093bf3cc733b8cad75677ed229c029
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -428,7 +461,15 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 000000006e2700000c280000
+=======
+<<<<<<< HEAD
+    m_ExpandedIDs: 00000000542700005a2700005c270000f0270000
+=======
+    m_ExpandedIDs: 00000000182a00001c2a00001e2a00007a2a0000
+>>>>>>> 17860e1a3415bda9aaf6b551ee384d91895cf3aa
+>>>>>>> ab037e1a25093bf3cc733b8cad75677ed229c029
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -456,7 +497,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000
+    m_ExpandedInstanceIDs: c623000096270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -482,8 +523,16 @@ MonoBehaviour:
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
+<<<<<<< HEAD
+  m_DirectoriesAreaWidth: 211
+=======
   m_DirectoriesAreaWidth: 278
+<<<<<<< HEAD
 --- !u!114 &15
+=======
+>>>>>>> 17860e1a3415bda9aaf6b551ee384d91895cf3aa
+--- !u!114 &14
+>>>>>>> ab037e1a25093bf3cc733b8cad75677ed229c029
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -546,28 +595,40 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: b0270000
     m_LastClickedID: 0
     m_ExpandedIDs: 9efbffff00000000
+=======
+<<<<<<< HEAD
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: d676fcffeea6fdff6c84feffb204ffff763affff484dffffac92ffffd494ffff0499fffff099ffff2af8ffff98fbffff000000005e290000682900007a2900009c2900000c2c0000842d00003834000042340000543400007a340000d6350000fa35000004360000
+=======
+    m_SelectedIDs: 305afeff
+    m_LastClickedID: -107984
+    m_ExpandedIDs: 50f8ffff00000000
+>>>>>>> 17860e1a3415bda9aaf6b551ee384d91895cf3aa
+>>>>>>> ab037e1a25093bf3cc733b8cad75677ed229c029
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Panel
+      m_OriginalName: Panel
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -97458
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 4
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
   m_ExpandedScenes:
-  - Pascal
+  - GameOver
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -599,14 +660,26 @@ MonoBehaviour:
     height: 553
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 0
-  m_2DMode: 0
+  lastFramingTime: 2885.619561544787
+  m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: -8.590698, y: -1.4684482, z: 0}
     speed: 2
     m_Value: {x: -8.590698, y: -1.4684482, z: 0}
+=======
+<<<<<<< HEAD
+    m_Target: {x: 504.83606, y: 257.1272, z: -4}
+    speed: 2
+    m_Value: {x: 504.83606, y: 257.1272, z: -4}
+=======
+    m_Target: {x: 11.339531, y: -7.939064, z: 0}
+    speed: 2
+    m_Value: {x: 11.339531, y: -7.939064, z: 0}
+>>>>>>> 17860e1a3415bda9aaf6b551ee384d91895cf3aa
+>>>>>>> ab037e1a25093bf3cc733b8cad75677ed229c029
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -630,19 +703,33 @@ MonoBehaviour:
       speed: 2
       m_Value: 1
   m_Rotation:
+<<<<<<< HEAD
+    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    speed: 2
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
+  m_Size:
+    m_Target: 710.15283
+    speed: 2
+    m_Value: 710.15283
+=======
     m_Target: {x: -0, y: 0, z: -0, w: -1}
     speed: 2
     m_Value: {x: -0, y: 0, z: -0, w: -1}
   m_Size:
     m_Target: 15.3483925
     speed: 2
+<<<<<<< HEAD
     m_Value: 15.3483925
+=======
+    m_Value: 5.116807
+>>>>>>> 17860e1a3415bda9aaf6b551ee384d91895cf3aa
+>>>>>>> ab037e1a25093bf3cc733b8cad75677ed229c029
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
   m_ShowGlobalGrid: 1
-  m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
+  m_LastSceneViewRotation: {x: 0.08852523, y: 0.061214328, z: -0.005451267, w: 0.9941762}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
