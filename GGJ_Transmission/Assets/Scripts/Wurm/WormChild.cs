@@ -17,13 +17,16 @@ public class WormChild : MonoBehaviour
     private float rotation = 0;
 
     [HideInInspector] public Sprite mySprite;
+    [HideInInspector] public Color dmgColor = new Color(0, 255, 0, 255);
 
     //Objects
     [HideInInspector] public GameObject parent;
+    [HideInInspector] public WormHead wormHead;
 
     //Components
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+
 
 
 	// Use this for initialization
@@ -39,6 +42,7 @@ public class WormChild : MonoBehaviour
 	private void Update ()
     {
         Move();
+        DmgColor();
 	}
 
     private void Move()
@@ -57,5 +61,11 @@ public class WormChild : MonoBehaviour
         {
             rb.MovePosition(rb.position + direction * ((distance-distMin)/(distMax-distMin)) * speed * Time.deltaTime);
         }
+    }
+    
+    private void DmgColor()
+    {
+       dmgColor = wormHead.dmgColor;
+        sr.color = dmgColor;
     }
 }

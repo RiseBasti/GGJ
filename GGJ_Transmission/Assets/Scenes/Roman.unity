@@ -178,59 +178,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1115152473
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4717703315228232, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717703315228232, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717703315228232, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717703315228232, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717703315228232, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717703315228232, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717703315228232, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717703315228232, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114470383460796108, guid: b664a10a674e32e43a229cf648744c98,
-        type: 2}
-      propertyPath: Enemy
-      value: 
-      objectReference: {fileID: 1710636665957056, guid: c66d7e5f63f7c2942bde44242b89f471,
-        type: 2}
-    - target: {fileID: 114470383460796108, guid: b664a10a674e32e43a229cf648744c98,
-        type: 2}
-      propertyPath: Camera
-      value: 
-      objectReference: {fileID: 1408404657}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b664a10a674e32e43a229cf648744c98, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1408404657
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +298,27 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 212780576751253346, guid: 3804ce927272b834790b5d1983351aef,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212780576751253346, guid: 3804ce927272b834790b5d1983351aef,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.8689655
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232613550319954, guid: 3804ce927272b834790b5d1983351aef,
+        type: 2}
+      propertyPath: contamination
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232613550319954, guid: 3804ce927272b834790b5d1983351aef,
+        type: 2}
+      propertyPath: midSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 84c56304f298bdf4282e74eec1d24490,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3804ce927272b834790b5d1983351aef, type: 2}
   m_IsPrefabParent: 0
@@ -366,7 +334,7 @@ GameObject:
   - component: {fileID: 2109636548}
   - component: {fileID: 2109636547}
   - component: {fileID: 2109636546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Zelle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,12 +421,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4185ea636d740654f88da519372f03de, type: 3}
-  m_Color: {r: 0.3141481, g: 0, b: 0.77205884, a: 1}
+  m_Sprite: {fileID: 21300000, guid: af8f4ba739714544e9f1303601ae15cb, type: 3}
+  m_Color: {r: 0, g: 0.8758622, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.99, y: 1.27}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
