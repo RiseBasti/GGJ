@@ -89,9 +89,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c0416d273df454c955d4265a646395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 5
+  contamination: 0
+  dmgColor: {x: 0, y: 255, z: 0}
+  pulsAlpha: 255
   child: {fileID: 1987093100563790, guid: 8658ea12db3cf7040b3968cedd02d1c6, type: 2}
-  childSprite: {fileID: 21300000, guid: 6829a2b6911bff04baa850d0ae9141ee, type: 3}
-  endSprite: {fileID: 21300000, guid: aecf386bb6839484c8e4a39e46dadf39, type: 3}
+  midSprite: {fileID: 21300000, guid: 84c56304f298bdf4282e74eec1d24490, type: 3}
+  endSprite: {fileID: 21300000, guid: 78add6d4a66d2ee439501c57e4753502, type: 3}
 --- !u!212 &212780576751253346
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -126,12 +130,12 @@ SpriteRenderer:
   m_SortingLayerID: -2004220403
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4185ea636d740654f88da519372f03de, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: af8f4ba739714544e9f1303601ae15cb, type: 3}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.99, y: 1.27}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

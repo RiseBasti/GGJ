@@ -6,29 +6,33 @@ public class WormHead : MonoBehaviour
 {
     //Variables
     //Stats
-    private int hp = 5;
+    private float hp = 10;
     private float speed = 5;
     private int childNum = 4;
     private float distMin = 0.45f;
     private float distMax = 0.65f;
 
-    private int contamination = 0;
+    private float contamination = 0;
 
 
     //Script
     Vector2 direction = new Vector2(0, 0);
     float rotation = 0;
 
+    [HideInInspector] public Color dmgColor;
+    [HideInInspector] public float pulsAlpha = 255;
+
     private bool dead = false;
 
     //Objects
     public GameObject child;
-    public Sprite childSprite;
+    public Sprite midSprite;
     public Sprite endSprite;
     private GameObject newParent;
 
     //Components
     private Rigidbody2D rb;
+    private SpriteRenderer mySprite;
     private WormHead wormHead;
 
 	// Use this for initialization
@@ -36,6 +40,7 @@ public class WormHead : MonoBehaviour
     {
         newParent = gameObject;
         rb = GetComponent<Rigidbody2D>();
+        mySprite = GetComponent<SpriteRenderer>();
         wormHead = GetComponent<WormHead>();
 
         for(int i=0; i<childNum; i++)
@@ -43,13 +48,14 @@ public class WormHead : MonoBehaviour
             //AllChilds
             GameObject newChild = Instantiate(child, new Vector3((i+1) * distMin *(-1), 0, 0) + transform.position, Quaternion.identity);
             newChild.GetComponent<WormChild>().parent = newParent;
+            newChild.GetComponent<WormChild>().wormHead = wormHead;
             newChild.GetComponent<WormChild>().speed = speed;
             newChild.GetComponent<SpriteRenderer>().sortingOrder = -i;
 
             if (i<childNum-1)
             {
                 //MiddleChilds
-                newChild.GetComponent<WormChild>().mySprite = childSprite;
+                newChild.GetComponent<WormChild>().mySprite = midSprite;
                 newChild.GetComponent<WormChild>().distMin = distMin;
                 newChild.GetComponent<WormChild>().distMax = distMax;
             }
@@ -69,6 +75,7 @@ public class WormHead : MonoBehaviour
 	private void Update ()
     {
         Move();
+        DmgColor();
     }
 
 
@@ -85,7 +92,13 @@ public class WormHead : MonoBehaviour
         
     }
 
-    public void gotDmg(int cont)
+    private void DmgColor()
+    {
+        dmgColor = new Color(Mathf.Clamp(contamination / (hp / 2), 0, 1), Mathf.Clamp((hp - contamination) / (hp / 2), 0, 1), 0, 255); //Mathf.PingPong(Time.time, 1)
+        mySprite.color = dmgColor;
+    }
+
+    public void GotDmg(int cont)
     {
         contamination += cont;
         if(contamination>=hp)
@@ -93,8 +106,8 @@ public class WormHead : MonoBehaviour
             dead = true;
         }
     }
-    public void gotHealed()
+    public void GotHealed(int cont)
     {
-
+        contamination -= cont;
     }
 }
