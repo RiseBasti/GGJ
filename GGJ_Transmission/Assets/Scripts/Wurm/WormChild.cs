@@ -12,20 +12,27 @@ public class WormChild : MonoBehaviour
     [HideInInspector] public float speed;
     [HideInInspector] public float distMin;
     [HideInInspector] public float distMax;
+
     private Vector2 direction = new Vector2(0,0);
     private float rotation = 0;
+
+    [HideInInspector] public Sprite mySprite;
 
     //Objects
     [HideInInspector] public GameObject parent;
 
     //Components
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
 
 	// Use this for initialization
 	private void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+
+        sr.sprite = mySprite;
 	}
 	
 	// Update is called once per frame
