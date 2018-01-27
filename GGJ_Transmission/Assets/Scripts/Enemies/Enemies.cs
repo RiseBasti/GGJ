@@ -15,15 +15,15 @@ public class Enemies : MonoBehaviour {
     private int EnemyHP;
     private float EnemySpeed;
     private Rigidbody2D rb;
-    public Transform EnemyTarget;
+    public GameObject EnemyTarget;
     Sprite Visual;
     //Sprite
     private SpriteRenderer SR;
     Color Color = Color.white;
 
     //Speed
-    private float MaxVelocity = 0.5f;
-    private float MinVelocity = -0.5f;
+    private float MaxVelocity;
+   
     //boolean
     public bool boost = true;
     public bool Spawning = true;
@@ -41,12 +41,15 @@ public class Enemies : MonoBehaviour {
 
 
     void Start () {
-        
+        randomizer();
+
+
         rb = GetComponent<Rigidbody2D>();
        // Size = gameObject.transform.lo;
 
         SR = gameObject.GetComponent<SpriteRenderer>();
         SR.color = Color;
+
 
         Spawning = true;
         Color.a = 0;
@@ -71,7 +74,7 @@ public class Enemies : MonoBehaviour {
 
     void Rotation() {
 
-        float AngleRad = Mathf.Atan2(EnemyTarget.position.y - transform.position.y, EnemyTarget.position.x - transform.position.x);
+        float AngleRad = Mathf.Atan2(EnemyTarget.transform.position.y - transform.position.y, EnemyTarget.transform.position.x - transform.position.x);
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
         this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
 
@@ -79,7 +82,7 @@ public class Enemies : MonoBehaviour {
     }
     void Detection() {
 
-        float d = Vector2.Distance(EnemyTarget.position, transform.position);
+        float d = Vector2.Distance(EnemyTarget.transform.position, transform.position);
 
         if (d < 1) {
 
@@ -96,13 +99,13 @@ public class Enemies : MonoBehaviour {
         float RVX = rb.velocity.x;
         float RVY = rb.velocity.y;
 
-        if (RVX < 1 || RVX > -1) {
+        if (RVX < MaxVelocity || RVX > -MaxVelocity) {
             rb.AddForce(transform.right * EnemySpeed);
             //boost = false;
             //rb.velocity = new Vector2(0, RVY);
         }
 
-        if (RVY < 1 || RVY > -1)
+        if (RVY < MaxVelocity || RVY > -MaxVelocity)
         {
             rb.AddForce(transform.right * EnemySpeed);
             // boost = false;
@@ -115,12 +118,6 @@ public class Enemies : MonoBehaviour {
 
         }
   
-
-
-        
-        
-        
-
 
     }
 
@@ -140,22 +137,46 @@ public class Enemies : MonoBehaviour {
 
         switch (EnemyTyp) {
 
-            case "Small":
+            case "Ant":
 
-                MaxSize = 0.5f;
+                MaxVelocity = 1;
+                MaxSize = 1f;
                 EnemyHP = 1;
                 EnemySpeed = 1f;
                 break;
 
-            case "Big":
+            case "Moth":
+                MaxVelocity = 0.5f;
+                MaxSize = 3f;
+                EnemyHP = 1;
+                EnemySpeed = 0.5f;
+                break;
 
-                MaxSize = 5f;
+
+            case "Spikeboll":
+                MaxVelocity = 0.1f;
+                MaxSize = 3f;
+                EnemyHP = 1;
+                EnemySpeed = 0.1f;
+                break;
+
+
+            case "Mushroom":
+                MaxVelocity = 0;
+                MaxSize = 3f;
+                EnemyHP = 1;
+                EnemySpeed = 0f;
+                break;
+
+            case "Wasps":
+                MaxVelocity = 0.5f;
+                MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 0.5f;
                 break;
 
             case "Mutation":
-
+                MaxVelocity = 0.5f;
                 MaxSize = 1f;
                 EnemyHP = 1;
                 EnemySpeed = 0.5f;
@@ -164,61 +185,84 @@ public class Enemies : MonoBehaviour {
             default: 
                 break;
 
-
-
-         
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
     void Fadein() {
 
 
-      
+
 
         if (Spawning == true)
-            
+
         {
 
-         Color.a += 0.01f;
-         EnemiesSize += 0.01f;
-            
-        
-            
+            Color.a += 0.01f;
+            EnemiesSize += 0.01f;
+            gameObject.GetComponent<Collider2D>().enabled= false;
+
+
 
 
             if (EnemiesSize > MaxSize)
             {
-               Color.a = 0;
-               EnemiesSize = MaxSize;
-               Spawning = false;
+                Color.a = 0;
+                EnemiesSize = MaxSize;
+                Spawning = false;
             }
 
         }
         else
         {
-
+            gameObject.GetComponent<Collider2D>().enabled = true;
             Speed();
             Detection();
-            //EnemiesSize = 0;
         }
 
 
+
+
+    }
+
+    void randomizer() {
+
+
+        int R =  Random.Range(0,25);
+
+        if (R < 5)
+        {
+            EnemyTyp = "Ant";
+
+
+        }
+        if (R > 5 && R < 10)
+        {
+            EnemyTyp = "Moth";
+
+
+        }
+
+        if (R > 10 && R < 15)
+        {
+            EnemyTyp = "Spikeboll";
+
+
+        }
+
+        if (R > 15 && R < 20)
+        {
+            EnemyTyp = "Wasps";
+
+
+        }
+
+        if (R > 20 && R < 25)
+        {
+            EnemyTyp = "Mushroom";
+
+
+        }
 
 
     }
