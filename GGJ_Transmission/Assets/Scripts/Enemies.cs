@@ -10,12 +10,14 @@ public class Enemies : MonoBehaviour {
     //Eigenschaften
     public string EmemyTyp = "Big";
     public float EnemiesSize = 0;
+    Vector2 Size;
     public float MaxSize = 1;
     public int EnemyHP = 1;
     public float EnemySpeed = 0.5f;
     private Rigidbody2D rb;
     public Transform EnemyTarget;
     Sprite Visual;
+    //Sprite
     private SpriteRenderer SR;
     Color Color = Color.white;
 
@@ -39,7 +41,13 @@ public class Enemies : MonoBehaviour {
 
 
     void Start () {
+        
         rb = GetComponent<Rigidbody2D>();
+       // Size = gameObject.transform.lo;
+
+        SR = gameObject.GetComponent<SpriteRenderer>();
+        SR.color = Color;
+
         Spawning = true;
         Color.a = 0;
         
@@ -53,8 +61,8 @@ public class Enemies : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-       
-
+        Typs();
+        transform.localScale = new Vector2(EnemiesSize, EnemiesSize);
         Fadein();
 
 
@@ -144,7 +152,7 @@ public class Enemies : MonoBehaviour {
 }
         if (EmemyTyp == "Big")
         {
-            MaxSize = 5.5f;
+            MaxSize = 5f;
             EnemyHP = 1;
             EnemySpeed = 0.5f;
             //Visual = Resources.Load<Sprite>();
@@ -175,30 +183,30 @@ public class Enemies : MonoBehaviour {
       
 
         if (Spawning == true)
-
+            
         {
-           
-            Color.a += 0.01f;
-            EnemiesSize += 0.01f;
+
+         Color.a += 0.01f;
+         EnemiesSize += 0.01f;
             
-         SR = gameObject.GetComponent<SpriteRenderer>();
-            SR.color = Color;
+        
             
 
 
-            if (EnemiesSize >= MaxSize)
+            if (EnemiesSize > MaxSize)
             {
-                Color.a = 0;
+               Color.a = 0;
                EnemiesSize = MaxSize;
-                Spawning = false;
+               Spawning = false;
             }
 
         }
         else
         {
+
             Speed();
             Detection();
-            EnemiesSize = 0;
+            //EnemiesSize = 0;
         }
 
 

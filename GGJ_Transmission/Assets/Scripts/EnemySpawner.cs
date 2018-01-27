@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour {
 
         if (timer <= 0) {
             Spawner();
-            timer = 10;
+            timer = 120;
 
         }
 
