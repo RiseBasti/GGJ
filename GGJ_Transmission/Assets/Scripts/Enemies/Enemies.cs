@@ -7,9 +7,10 @@ public class Enemies : MonoBehaviour {
     //Player Wurm
     public GameObject PW;
     private WormHead WH;
+    BoxCollider2D BC;
 
-    //direcrion
-    Vector2 direction;
+   //direcrion
+   Vector2 direction;
 
     //Eigenschaften
     public string EnemyTyp;
@@ -48,16 +49,19 @@ public class Enemies : MonoBehaviour {
 
 
     void Start () {
-        Vector2 direction = new Vector2(EnemyTarget.transform.position.x, EnemyTarget.transform.position.y).normalized;
+       direction = new Vector2(EnemyTarget.transform.position.x-transform.position.x, EnemyTarget.transform.position.y - transform.position.y).normalized;
+
+        BC = gameObject.GetComponent<BoxCollider2D>();
 
         WH = PW.GetComponent<WormHead>();
         
 
         randomizer();
         Ator = gameObject.GetComponent<Animator>();
+        //Ator.animation = Resources.Load("Art/Enemies/moth_1", typeof(Animation)) as Animation;
 
 
-         rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
        // Size = gameObject.transform.lo;
 
         SR = gameObject.GetComponent<SpriteRenderer>();
@@ -107,39 +111,15 @@ public class Enemies : MonoBehaviour {
     }
 
     void Speed() {
-
-        //Debug.Log(boost);
-
-        float RVX = rb.velocity.x;
-        float RVY = rb.velocity.y;
-
-        if (RVX < MaxVelocity || RVX > -MaxVelocity) {
-            rb.MovePosition(rb.position + direction * EnemySpeed );
-            //boost = false;
-            //rb.velocity = new Vector2(0, RVY);
-        }
-
-        if (RVY < MaxVelocity || RVY > -MaxVelocity)
-        {
-           
-            rb.MovePosition(rb.position + direction * EnemySpeed);
-            // boost = false;
-            // rb.velocity = new Vector2(RVX, 0);
-        }
-
-        if (boost) {
-          
-           // rb.AddForce(transform.right * EnemySpeed);
-
-        }
-  
+ 
+            rb.MovePosition(rb.position + direction * EnemySpeed *Time.deltaTime );
 
     }
 
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Worm"&& EnemyTyp != "Mutation") {
+        if (col.gameObject.tag == "Worm" && EnemyTyp != "Mutation") {
 
             EnemyTyp = "Mutation";
             transform.parent = col.transform;
@@ -170,8 +150,8 @@ public class Enemies : MonoBehaviour {
                 MaxVelocity = 0.3f;
                 MaxSize = 3f;
                 EnemyHP = 1;
-                EnemySpeed = 0.5f;
-                //SR.sprite = Resources.Load("Art/Enemies/moth_1", typeof (Sprite)) as Sprite;
+                EnemySpeed = 2;
+                SR.sprite = Resources.Load("Art/Enemies/moth_1", typeof (Sprite)) as Sprite;
                 break;
 
 
@@ -179,7 +159,7 @@ public class Enemies : MonoBehaviour {
                 MaxVelocity = 0.1f;
                 MaxSize = 3f;
                 EnemyHP = 1;
-                EnemySpeed = 0.1f;
+                EnemySpeed = 10;
                 //SR.sprite = Resources.Load("Art/Enemies/spikeball_1", typeof(Sprite)) as Sprite;
                 break;
 
@@ -196,7 +176,7 @@ public class Enemies : MonoBehaviour {
                 MaxVelocity = 0.3f;
                 MaxSize = 3f;
                 EnemyHP = 1;
-                EnemySpeed = 0.5f;
+                EnemySpeed = 1;
                 //SR.sprite = Resources.Load("Art/Enemies/wasp_1", typeof(Sprite)) as Sprite;
                 break;
 
@@ -226,7 +206,7 @@ public class Enemies : MonoBehaviour {
 
             Color.a += 0.01f;
             EnemiesSize += 0.01f;
-            gameObject.GetComponent<Collider2D>().enabled= false;
+            BC.enabled= false;
 
 
 
@@ -241,7 +221,7 @@ public class Enemies : MonoBehaviour {
         }
         else
         {
-            gameObject.GetComponent<Collider2D>().enabled = true;
+            BC.enabled = true;
             Speed();
             Detection();
         }
