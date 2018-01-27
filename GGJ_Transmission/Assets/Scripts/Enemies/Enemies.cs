@@ -163,7 +163,7 @@ public class Enemies : MonoBehaviour {
                 MaxVelocity = 0.1f;
                 MaxSize = 3f;
                 EnemyHP = 1;
-                EnemySpeed = 10;
+                EnemySpeed = 1;
                 anima.SetBool("isSpikeboll", true);
                 color = new Color(0.9f, 0.8f,0);
                 break;
