@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Zelle : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class Zelle : MonoBehaviour
 
     private bool eating = false;
     private float eatTimer = 0;
-    private bool dead = false;
+    public bool dead = false;
 
     //Objects
 
@@ -37,10 +38,19 @@ public class Zelle : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
+
+        //Debug.Log(dead);
+
         if (!dead)
         {
+
             Move();
             Eat();
+        }
+        else
+
+        {
+            SceneManager.LoadScene("GameOver");
         }
 	}
 
