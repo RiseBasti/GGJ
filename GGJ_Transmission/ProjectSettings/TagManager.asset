@@ -45,3 +45,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Worm
+    uniqueID: 2290746893
+    locked: 0
+  - name: Zelle
+    uniqueID: 1144268121
+    locked: 0
+  - name: Enemy
+    uniqueID: 3513181705
+    locked: 0
+  - name: Item
+    uniqueID: 2746618011
+    locked: 0
+  - name: Environment
+    uniqueID: 888795681
+    locked: 0

@@ -73,14 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c956e795df753f4286f9d2fca692f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmemyTyp: Big
-  EnemiesSize: 0
-  MaxSize: 1
-  EnemyHP: 1
-  EnemySpeed: 0.5
+  EnemyTyp: Small
   EnemyTarget: {fileID: 0}
-  MaxVelocity: 0.5
-  MinVelocity: -0.5
   boost: 1
   Spawning: 1
 --- !u!212 &212703377143464090
