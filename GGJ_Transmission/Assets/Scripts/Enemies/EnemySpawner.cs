@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject Camera;
     public float Timer = 120;
 
-    float timer = 10;
+    float timer = 1;
 
 
 
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour {
 
         if (timer <= 0) {
             Spawner();
-            timer = 10;
+            timer = 1;
 
         }
 
