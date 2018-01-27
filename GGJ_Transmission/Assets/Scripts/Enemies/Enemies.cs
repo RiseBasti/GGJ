@@ -89,7 +89,7 @@ public class Enemies : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
+        Deaying();
         Typs();
         transform.localScale = new Vector2(EnemiesSize, EnemiesSize);
         Fadein();
@@ -102,7 +102,7 @@ public class Enemies : MonoBehaviour {
 
         float AngleRad = Mathf.Atan2(EnemyTarget.transform.position.y - transform.position.y, EnemyTarget.transform.position.x - transform.position.x);
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
-        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
+        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg-90);
 
 
 
@@ -122,10 +122,8 @@ public class Enemies : MonoBehaviour {
     void Speed() {
  
             rb.MovePosition(rb.position + direction * EnemySpeed *Time.deltaTime );
-
+           
     }
-
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Worm" && EnemyTyp != "Mutation") {
@@ -136,8 +134,6 @@ public class Enemies : MonoBehaviour {
 
         }
     }
-
-
     void Typs() {
 
 
@@ -150,7 +146,7 @@ public class Enemies : MonoBehaviour {
                 EnemyHP = 1;
                 EnemySpeed = 1f;
                 anima.SetBool("isAnt", true);
-                SR.color = new Color(1, 0, 0);
+                color = new Color(1, 0, 0);
                 break;
 
             case "Moth":
@@ -159,7 +155,7 @@ public class Enemies : MonoBehaviour {
                 EnemyHP = 1;
                 EnemySpeed = 2;
                 anima.SetBool("isMoth", true);
-                SR.color = new Color(1, 1, 0);
+                color = new Color(0.9f, 0.5f, 0.1f);
                 break;
 
 
@@ -169,7 +165,7 @@ public class Enemies : MonoBehaviour {
                 EnemyHP = 1;
                 EnemySpeed = 10;
                 anima.SetBool("isSpikeboll", true);
-                SR.color = new Color(1, 0, 1);
+                color = new Color(0.9f, 0.8f,0);
                 break;
 
 
@@ -179,7 +175,7 @@ public class Enemies : MonoBehaviour {
                 EnemyHP = 1;
                 EnemySpeed = 0f;
                 anima.SetBool("isMushroom", true);
-                SR.color = new Color(0.5f, 1, 0.5f);
+                color = new Color(0.9f, 0.5f, 0.1f);
                 break;
 
             case "Wasps":
@@ -188,7 +184,7 @@ public class Enemies : MonoBehaviour {
                 EnemyHP = 1;
                 EnemySpeed = 1;
                 anima.SetBool("isWasps", true);
-                SR.color = new Color(0, 1, 0);
+                color = new Color(1f, 1f, 0.1f);
                 break;
 
             case "Mutation":
@@ -197,7 +193,7 @@ public class Enemies : MonoBehaviour {
                 EnemyHP = 1;
                 EnemySpeed = 0f;
                 anima.SetBool("isMutatet", true);
-                
+                SR.color = color; 
                 break;
 
             default: 
@@ -206,7 +202,6 @@ public class Enemies : MonoBehaviour {
         }
 
     }
-
     void Fadein() {
 
 
@@ -242,7 +237,6 @@ public class Enemies : MonoBehaviour {
 
 
     }
-
     void randomizer() {
 
 
@@ -284,7 +278,6 @@ public class Enemies : MonoBehaviour {
 
 
     }
-
     void Deaying() {
 
         if (isEat) {
