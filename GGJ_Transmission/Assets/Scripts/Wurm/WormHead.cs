@@ -6,9 +6,15 @@ public class WormHead : MonoBehaviour
 {
     //Variables
     //Stats
+<<<<<<< HEAD
     private float hp;  //Depends on the Size of the Worm (hp = childNum)
     private float speed = 5;
     private int childNum = 10;
+=======
+    private float hp;  //Depends on the Size of the Worm (hp = childNum*2)
+    private float speed = 5;
+    private int childNum = 3;
+>>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
     private float distMin = 0.45f;
     private float distMax = 0.65f;
 
@@ -36,7 +42,11 @@ public class WormHead : MonoBehaviour
 	// Use this for initialization
 	private void Start ()
     {
+<<<<<<< HEAD
         hp = childNum;
+=======
+        hp = childNum*2;
+>>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
         newParent = gameObject;
         rb = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
@@ -75,7 +85,10 @@ public class WormHead : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
-        Move();
+        if (!dead)
+        {
+            Move();
+        }
         DmgColor();
     }
 
@@ -89,7 +102,7 @@ public class WormHead : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotation);
-        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + direction * Mathf.Clamp(speed-contamination,0,speed) * Time.deltaTime);
         
     }
 
@@ -118,6 +131,10 @@ public class WormHead : MonoBehaviour
         {
             //Transform OLD LastChild to NEW MiddleChild
             newParent.GetComponent<WormChild>().spriteEnd = false;
+<<<<<<< HEAD
+=======
+            newParent.GetComponent<Animator>().SetBool("end", false);
+>>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
             newParent.GetComponent<WormChild>().distMin = distMin;
             newParent.GetComponent<WormChild>().distMax = distMax;
 
@@ -138,7 +155,11 @@ public class WormHead : MonoBehaviour
             newParent = newChild;
 
             childNum += 1;
+<<<<<<< HEAD
             hp = childNum;
+=======
+            hp = childNum*2;
+>>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
 
         }
     }

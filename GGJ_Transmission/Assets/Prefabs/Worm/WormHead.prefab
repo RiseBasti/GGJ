@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 95492955578783722}
   m_Layer: 8
   m_Name: WormHead
-  m_TagString: Worm
+  m_TagString: WormHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1358203604536516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62, y: 1.34, z: 0}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,8 +110,6 @@ MonoBehaviour:
   dmgColor: {r: 0, g: 0, b: 0, a: 0}
   pulsAlpha: 255
   child: {fileID: 1987093100563790, guid: 8658ea12db3cf7040b3968cedd02d1c6, type: 2}
-  midSprite: {fileID: 21300000, guid: 84c56304f298bdf4282e74eec1d24490, type: 3}
-  endSprite: {fileID: 21300000, guid: 78add6d4a66d2ee439501c57e4753502, type: 3}
 --- !u!212 &212780576751253346
 SpriteRenderer:
   m_ObjectHideFlags: 1

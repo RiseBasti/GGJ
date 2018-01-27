@@ -6,19 +6,21 @@ public class Enemies : MonoBehaviour
 {
 
     //Player Wurm
-    public GameObject PW;
+    private GameObject PW;
     private WormHead WH;
     BoxCollider2D BC;
     AnimationClip anim;
     private Animation Ator;
     Animator anima;
    
+    [HideInInspector] public float eatSpeed = 1;
 
     //direcrion
     Vector2 direction;
 
     //Eigenschaften
     public string EnemyTyp;
+<<<<<<< HEAD
 <<<<<<< HEAD
     [HideInInspector] public float EnemiesSize;
    
@@ -27,12 +29,17 @@ public class Enemies : MonoBehaviour
 
 >>>>>>> 52d2c2ea6be975ae4d879a9843617047228d1ff8
     private float MaxSize;
+=======
+    [HideInInspector] public float EnemiesSize;
+
+    [HideInInspector]  public float MaxSize;
+>>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
     private int EnemyHP;
 
     private float EnemySpeed;
     private Rigidbody2D rb;
 
-    public GameObject EnemyTarget;
+    private GameObject EnemyTarget;
 
     //Sprite
     private SpriteRenderer SR;
@@ -43,6 +50,7 @@ public class Enemies : MonoBehaviour
 
     //boolean
     public bool isEat = false;
+    private bool hpRestored = false;
     public bool boost = true;
     public bool Spawning = true;
 
@@ -62,6 +70,10 @@ public class Enemies : MonoBehaviour
 
     void Start()
     {
+        PW = GameObject.FindGameObjectWithTag("WormHead");
+
+        EnemyTarget = GameObject.FindGameObjectWithTag("Zelle");
+
         direction = new Vector2(EnemyTarget.transform.position.x - transform.position.x, EnemyTarget.transform.position.y - transform.position.y).normalized;
 
         BC = gameObject.GetComponent<BoxCollider2D>();
@@ -133,9 +145,8 @@ public class Enemies : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Worm" && EnemyTyp != "Mutation")
+        if ((col.gameObject.tag == "Worm" || col.gameObject.tag == "WormHead") && EnemyTyp != "Mutation")
         {
-
             EnemyTyp = "Mutation";
             transform.parent = col.transform;
             WH.GotDmg(MaxSize);
@@ -199,7 +210,6 @@ public class Enemies : MonoBehaviour
 
             case "Mutation":
                 MaxVelocity = 0f;
-                MaxSize = 1f;
                 EnemyHP = 1;
                 EnemySpeed = 0f;
                 anima.SetBool("isMutatet", true);
@@ -315,14 +325,22 @@ public class Enemies : MonoBehaviour
 
         if (isEat)
         {
+            if (!hpRestored)
+            {
+                WH.GotHealed(MaxSize);
+                hpRestored = true;
+            }
 
+<<<<<<< HEAD
             EnemiesSize -= Time.deltaTime;
+=======
+            EnemiesSize -= Time.deltaTime*eatSpeed;
+>>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
 
             if (EnemiesSize <= 0)
             {
                 Destroy(gameObject);
             }
-
         }
 
     }

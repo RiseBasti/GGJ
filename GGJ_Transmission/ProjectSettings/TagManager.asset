@@ -8,6 +8,7 @@ TagManager:
   - Zelle
   - Enemy
   - Item
+  - WormHead
   layers:
   - Default
   - TransparentFX
