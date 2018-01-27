@@ -7,6 +7,7 @@ public class Enemies : MonoBehaviour
     //Variables
     //Stats
     [HideInInspector] public string EnemyTyp;
+    [HideInInspector] private float deathTimer = 100;
 
 
     //Script
@@ -21,6 +22,7 @@ public class Enemies : MonoBehaviour
     private bool hpRestored = false;
     public bool boost = true;
     public bool Spawning = true;
+    public bool collected = false;
 
     //Objects
     private GameObject playerWorm;
@@ -50,7 +52,7 @@ public class Enemies : MonoBehaviour
 
         EnemyTarget = GameObject.FindGameObjectWithTag("Zelle");
 
-        direction = new Vector2((EnemyTarget.transform.position.x + Random.Range(-5, 5)) - transform.position.x, (EnemyTarget.transform.position.y + Random.Range(-3, 3)) - transform.position.y).normalized;
+        direction = new Vector2((EnemyTarget.transform.position.x + Random.Range(-12, 12)) - transform.position.x, (EnemyTarget.transform.position.y + Random.Range(-7, 7)) - transform.position.y).normalized;
 
         boxCol = gameObject.GetComponent<BoxCollider2D>();
 
@@ -68,6 +70,8 @@ public class Enemies : MonoBehaviour
         Spawning = true;
         enemyColor.a = 0;
 
+        Typs();
+
         Rotation();
     }
 
@@ -77,10 +81,19 @@ public class Enemies : MonoBehaviour
     void Update()
     {
         Deaying();
-        Typs();
         transform.localScale = new Vector2(EnemiesSize, EnemiesSize);
         Fadein();
 
+        if(deathTimer>0 && EnemyTyp != "Mutation")
+        {
+            deathTimer -= Time.deltaTime;
+            if(deathTimer<=0)
+            {
+                print(deathTimer);
+                isEat = true;
+                hpRestored = true;
+            }
+        }
 
     }
 
@@ -96,11 +109,10 @@ public class Enemies : MonoBehaviour
 
         float d = Vector2.Distance(EnemyTarget.transform.position, transform.position);
 
-        if (d < 10)
+        if (EnemyTyp != "Beatle" && EnemyTyp != "Mushrooms" && d < 5)
         {
-
+            direction = new Vector2(EnemyTarget.transform.position.x - transform.position.x, EnemyTarget.transform.position.y - transform.position.y).normalized;
             Rotation();
-
         }
 
     }
@@ -113,6 +125,7 @@ public class Enemies : MonoBehaviour
         if ((col.gameObject.tag == "Worm" || col.gameObject.tag == "WormHead") && EnemyTyp != "Mutation")
         {
             EnemyTyp = "Mutation";
+            Typs();
             transform.parent = col.transform;
             wormHead.GotDmg(MaxSize);
 
@@ -120,14 +133,13 @@ public class Enemies : MonoBehaviour
     }
     void Typs()
     {
-
-
         switch (EnemyTyp)
         {
 
             case "Ant":
                 MaxSize = 1f;
                 EnemySpeed = 2f;
+                deathTimer = 15;
                 anima.SetBool("isAnt", true);
                 enemyColor = new Color(1, 0, 0);
                 boxCol.size = new Vector2(0.25f,0.4f);
@@ -135,7 +147,8 @@ public class Enemies : MonoBehaviour
 
             case "Moth":
                 MaxSize = 3f;
-                EnemySpeed = 2.5f;
+                EnemySpeed = 1f;
+                deathTimer = 40;
                 anima.SetBool("isMoth", true);
                 enemyColor = new Color(0.9f, 0.5f, 0.1f);
                 boxCol.size = new Vector2(0.9f, 0.4f);
@@ -146,6 +159,7 @@ public class Enemies : MonoBehaviour
             case "Spikeboll":
                 MaxSize = 3f;
                 EnemySpeed = 1.5f;
+                deathTimer = 20;
                 anima.SetBool("isSpikeboll", true);
                 enemyColor = new Color(0.9f, 0.8f, 0);
                 boxCol.size = new Vector2(0.35f, 0.35f);
@@ -155,6 +169,7 @@ public class Enemies : MonoBehaviour
             case "Mushroom":
                 MaxSize = 3f;
                 EnemySpeed = 0f;
+                deathTimer = 100;
                 anima.SetBool("isMushroom", true);
                 enemyColor = new Color(0.9f, 0.5f, 0.1f);
                 boxCol.size = new Vector2(0.5f, 0.5f);
@@ -163,6 +178,7 @@ public class Enemies : MonoBehaviour
             case "Wasps":
                 MaxSize = 3f;
                 EnemySpeed = 3f;
+                deathTimer = 20;
                 anima.SetBool("isWasps", true);
                 enemyColor = new Color(1f, 1f, 0.1f);
                 boxCol.size = new Vector2(0.3f, 0.65f);
@@ -170,7 +186,9 @@ public class Enemies : MonoBehaviour
 
             case "Mutation":
                 EnemySpeed = 0f;
+                deathTimer = 100;
                 anima.SetBool("isMutatet", true);
+                enemyColor.a = 1;
                 sr.color = enemyColor;
                 boxCol.size = new Vector2(1, 1);
                 boxCol.offset = new Vector2(0, 0);
@@ -181,6 +199,7 @@ public class Enemies : MonoBehaviour
                 gameObject.tag = "Item";
                 MaxSize = 1f;
                 EnemySpeed = 4f;
+                deathTimer = 10;
                 anima.SetBool("isBeatle", true);
                 enemyColor = new Color(0.13f, 0.4f, 1f);
                 boxCol.size = new Vector2(1, 1);
@@ -219,43 +238,43 @@ public class Enemies : MonoBehaviour
     {
 
 
-        int R = Random.Range(0, 28);
+        int R = Random.Range(0, 30);
 
-        if (R < 5)
+        if (R < 10)
         {
             EnemyTyp = "Ant";
 
 
         }
-        if (R > 5 && R < 10)
+        if (R > 10 && R < 15)
         {
             EnemyTyp = "Moth";
 
 
         }
 
-        if (R > 10 && R < 15)
+        if (R > 15 && R < 18)
         {
             EnemyTyp = "Spikeboll";
 
 
         }
 
-        if (R > 15 && R < 20)
+        if (R > 18 && R < 20)
         {
             EnemyTyp = "Wasps";
 
 
         }
 
-        if (R > 20 && R < 25)
+        if (R > 20 && R < 27)
         {
             EnemyTyp = "Mushroom";
 
 
         }
 
-        if (R > 25 && R < 28)
+        if (R > 27 && R < 30)
         {
             EnemyTyp = "Beatle";
 
@@ -270,6 +289,7 @@ public class Enemies : MonoBehaviour
 
         if (isEat)
         {
+            boxCol.enabled = false;
             if (!hpRestored)
             {
                 wormHead.GotHealed(MaxSize);
@@ -277,7 +297,7 @@ public class Enemies : MonoBehaviour
             }
 
 
-            EnemiesSize -= Time.deltaTime*eatSpeed;
+            EnemiesSize -= Time.deltaTime * eatSpeed;
 
 
             if (EnemiesSize <= 0)
