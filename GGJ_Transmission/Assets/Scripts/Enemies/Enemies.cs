@@ -139,14 +139,14 @@ public class Enemies : MonoBehaviour {
 
             case "Ant":
 
-                MaxVelocity = 1;
+                MaxVelocity = 0.1f;
                 MaxSize = 1f;
                 EnemyHP = 1;
                 EnemySpeed = 1f;
                 break;
 
             case "Moth":
-                MaxVelocity = 0.5f;
+                MaxVelocity = 0.3f;
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 0.5f;
@@ -169,14 +169,14 @@ public class Enemies : MonoBehaviour {
                 break;
 
             case "Wasps":
-                MaxVelocity = 0.5f;
+                MaxVelocity = 0.3f;
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 0.5f;
                 break;
 
             case "Mutation":
-                MaxVelocity = 0.5f;
+                MaxVelocity = 0.3f;
                 MaxSize = 1f;
                 EnemyHP = 1;
                 EnemySpeed = 0.5f;
