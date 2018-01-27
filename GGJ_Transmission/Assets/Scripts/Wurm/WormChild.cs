@@ -51,7 +51,7 @@ public class WormChild : MonoBehaviour
 
         if(distance>distMax)
         {
-            rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+            rb.MovePosition(rb.position + direction * (speed+0.1f) * Time.deltaTime);
         }
         else if (distance>distMin)
         {

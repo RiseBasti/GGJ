@@ -12,6 +12,13 @@ public class WormHead : MonoBehaviour
     private float distMin = 0.45f;
     private float distMax = 0.65f;
 
+    //Buffs, Debuffs
+    [HideInInspector] public int enemy1 = 0;
+    [HideInInspector] public int enemy2 = 0;
+    [HideInInspector] public int enemy3 = 0;
+    [HideInInspector] public int enemy4 = 0;
+    [HideInInspector] public int enemy5 = 0;
+
 
     //Script
     Vector2 direction = new Vector2(0, 0);
@@ -25,36 +32,39 @@ public class WormHead : MonoBehaviour
 
     //Components
     private Rigidbody2D rb;
+    private WormHead wormHead;
 
 	// Use this for initialization
 	private void Start ()
     {
         newParent = gameObject;
         rb = GetComponent<Rigidbody2D>();
+        wormHead = GetComponent<WormHead>();
 
         for(int i=0; i<childNum; i++)
         {
             //AllChilds
-            GameObject nextChild = Instantiate(child, new Vector3((i+1) * distMin *(-1), 0, 0) + transform.position, Quaternion.identity);
-            nextChild.GetComponent<WormChild>().parent = newParent;
-            nextChild.GetComponent<WormChild>().speed = speed;
+            GameObject newChild = Instantiate(child, new Vector3((i+1) * distMin *(-1), 0, 0) + transform.position, Quaternion.identity);
+            newChild.GetComponent<WormChild>().parent = newParent;
+            newChild.GetComponent<WormCollision>().wormHead = GetComponent<WormHead>();
+            newChild.GetComponent<WormChild>().speed = speed;
 
-            if(i<childNum-1)
+            if (i<childNum-1)
             {
                 //MiddleChilds
-                nextChild.GetComponent<WormChild>().mySprite = childSprite;
-                nextChild.GetComponent<WormChild>().distMin = distMin;
-                nextChild.GetComponent<WormChild>().distMax = distMax;
+                newChild.GetComponent<WormChild>().mySprite = childSprite;
+                newChild.GetComponent<WormChild>().distMin = distMin;
+                newChild.GetComponent<WormChild>().distMax = distMax;
             }
             else
             {
                 //LastChild
-                nextChild.GetComponent<WormChild>().mySprite = endSprite;
-                nextChild.GetComponent<WormChild>().distMin = distMin+0.1f;
-                nextChild.GetComponent<WormChild>().distMax = distMax+0.1f;
+                newChild.GetComponent<WormChild>().mySprite = endSprite;
+                newChild.GetComponent<WormChild>().distMin = distMin+0.1f;
+                newChild.GetComponent<WormChild>().distMax = distMax+0.1f;
             }
 
-            newParent = nextChild;
+            newParent = newChild;
         }
 	}
 	
