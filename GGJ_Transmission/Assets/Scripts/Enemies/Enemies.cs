@@ -8,9 +8,12 @@ public class Enemies : MonoBehaviour {
     public GameObject PW;
     private WormHead WH;
     BoxCollider2D BC;
+    AnimationClip anim;
+    private Animation Ator;
+    Animator anima;
 
-   //direcrion
-   Vector2 direction;
+    //direcrion
+    Vector2 direction;
 
     //Eigenschaften
     public string EnemyTyp;
@@ -21,19 +24,21 @@ public class Enemies : MonoBehaviour {
 
     private float EnemySpeed;
     private Rigidbody2D rb;
-    private Animator Ator;
+   
     public GameObject EnemyTarget;
     
     //Sprite
     private SpriteRenderer SR;
-    Color Color = Color.white;
+    Color color = new Color(1,1,1);
 
     //Speed
     private float MaxVelocity;
-   
+
     //boolean
+    public bool isEat = false;
     public bool boost = true;
     public bool Spawning = true;
+    
     // Use this for initialization
 
     
@@ -57,19 +62,23 @@ public class Enemies : MonoBehaviour {
         
 
         randomizer();
-        Ator = gameObject.GetComponent<Animator>();
-        //Ator.animation = Resources.Load("Art/Enemies/moth_1", typeof(Animation)) as Animation;
+        Ator = gameObject.GetComponent<Animation>();
+        anima = gameObject.GetComponent<Animator>();
+
+
+
 
 
         rb = GetComponent<Rigidbody2D>();
        // Size = gameObject.transform.lo;
 
         SR = gameObject.GetComponent<SpriteRenderer>();
-        SR.color = Color;
+        SR.color = color;
         
 
         Spawning = true;
-        Color.a = 0;
+        color.a = 0;
+       // color = new Color(255,255,255);
         
        Rotation();
          
@@ -140,10 +149,8 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 1f;
                 EnemyHP = 1;
                 EnemySpeed = 1f;
-                
-                
-
-
+                anima.SetBool("isAnt", true);
+                SR.color = new Color(1, 0, 0);
                 break;
 
             case "Moth":
@@ -151,7 +158,8 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 2;
-                SR.sprite = Resources.Load("Art/Enemies/moth_1", typeof (Sprite)) as Sprite;
+                anima.SetBool("isMoth", true);
+                SR.color = new Color(1, 1, 0);
                 break;
 
 
@@ -160,7 +168,8 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 10;
-                //SR.sprite = Resources.Load("Art/Enemies/spikeball_1", typeof(Sprite)) as Sprite;
+                anima.SetBool("isSpikeboll", true);
+                SR.color = new Color(1, 0, 1);
                 break;
 
 
@@ -169,7 +178,8 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 0f;
-                //SR.sprite = Resources.Load("Art/Enemies/mushroom1", typeof(Sprite)) as Sprite;
+                anima.SetBool("isMushroom", true);
+                SR.color = new Color(0.5f, 1, 0.5f);
                 break;
 
             case "Wasps":
@@ -177,7 +187,8 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 1;
-                //SR.sprite = Resources.Load("Art/Enemies/wasp_1", typeof(Sprite)) as Sprite;
+                anima.SetBool("isWasps", true);
+                SR.color = new Color(0, 1, 0);
                 break;
 
             case "Mutation":
@@ -185,7 +196,8 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 1f;
                 EnemyHP = 1;
                 EnemySpeed = 0f;
-                //SR.sprite = Resources.Load("Art/Enemies/wasp_1", typeof(Sprite)) as Sprite;
+                anima.SetBool("isMutatet", true);
+                
                 break;
 
             default: 
@@ -204,7 +216,7 @@ public class Enemies : MonoBehaviour {
 
         {
 
-            Color.a += 0.01f;
+            color.a += 0.01f;
             EnemiesSize += 0.01f;
             BC.enabled= false;
 
@@ -213,7 +225,7 @@ public class Enemies : MonoBehaviour {
 
             if (EnemiesSize > MaxSize)
             {
-                Color.a = 0;
+                color.a = 0;
                 EnemiesSize = MaxSize;
                 Spawning = false;
             }
@@ -269,6 +281,23 @@ public class Enemies : MonoBehaviour {
 
 
         }
+
+
+    }
+
+    void Deaying() {
+
+        if (isEat) {
+
+            EnemiesSize -= 0.1f;
+
+            if (EnemiesSize <= 0)
+            {
+                Destroy(gameObject);
+            }
+
+        }
+
 
 
     }
