@@ -8,7 +8,7 @@ public class WormHead : MonoBehaviour
     //Stats
     private float hp = 10;
     private float speed = 5;
-    private int childNum = 4;
+    private int childNum = 7;
     private float distMin = 0.45f;
     private float distMax = 0.65f;
 

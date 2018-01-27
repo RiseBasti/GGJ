@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987093100563790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.028811932, y: 0.02690649, z: -0.0473485}
+  m_LocalPosition: {x: -1.09, y: 1.46, z: -0.0473485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,7 +88,7 @@ Animator:
   m_GameObject: {fileID: 1987093100563790}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 939f0ac409472cf4dbc8399ee28fc4a7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   speed: 5
   distMin: 0
   distMax: 0
-  mySprite: {fileID: 0}
+  spriteEnd: 0
   dmgColor: {r: 0, g: 255, b: 0, a: 255}
   parent: {fileID: 0}
   wormHead: {fileID: 0}

@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &58048162 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1387276829171588, guid: 52f85a262d36e1e49bc4153d7c8eec22,
+    type: 2}
+  m_PrefabInternal: {fileID: 708714202}
 --- !u!1001 &161348961
 Prefab:
   m_ObjectHideFlags: 0
@@ -171,6 +176,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b664a10a674e32e43a229cf648744c98, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 --- !u!1001 &404188983
 Prefab:
   m_ObjectHideFlags: 0
@@ -218,6 +224,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8658ea12db3cf7040b3968cedd02d1c6, type: 2}
   m_IsPrefabParent: 0
+=======
+>>>>>>> 38358f452deba01b7161179a024612b245c77783
 --- !u!1 &700662395
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +333,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52f85a262d36e1e49bc4153d7c8eec22, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 --- !u!1001 &1260577173
 Prefab:
   m_ObjectHideFlags: 0
@@ -367,6 +376,13 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0469e6f4a1234054f9c459d76020360c, type: 2}
   m_IsPrefabParent: 0
+=======
+--- !u!1 &1329938192 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1358203604536516, guid: 3804ce927272b834790b5d1983351aef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1601508520}
+>>>>>>> 38358f452deba01b7161179a024612b245c77783
 --- !u!1 &1408404657
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +394,7 @@ GameObject:
   - component: {fileID: 1408404660}
   - component: {fileID: 1408404659}
   - component: {fileID: 1408404658}
+  - component: {fileID: 1408404662}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -448,6 +465,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1408404662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1408404657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d381f46ea3104ae4eb450acd4aa98947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worm: {fileID: 1329938192}
+  zelle: {fileID: 58048162}
 --- !u!1001 &1601508520
 Prefab:
   m_ObjectHideFlags: 0

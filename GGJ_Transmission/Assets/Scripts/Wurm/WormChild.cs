@@ -34,7 +34,10 @@ public class WormChild : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
+        animator = GetComponent<Animator>();
         animator.SetBool("end", spriteEnd);
+        print(animator.GetBool("end"));
 	}
 	
 	// Update is called once per frame
