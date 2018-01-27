@@ -98,7 +98,7 @@ public class WormHead : MonoBehaviour
         mySprite.color = dmgColor;
     }
 
-    public void GotDmg(int cont)
+    public void GotDmg(float cont)
     {
         contamination += cont;
         if(contamination>=hp)
@@ -106,7 +106,7 @@ public class WormHead : MonoBehaviour
             dead = true;
         }
     }
-    public void GotHealed(int cont)
+    public void GotHealed(float cont)
     {
         contamination -= cont;
     }
