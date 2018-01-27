@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Enemies : MonoBehaviour {
 
+    //Player Wurm
+    public GameObject PW;
 
+    private WormHead WH;
 
 
     //Eigenschaften
@@ -13,10 +16,12 @@ public class Enemies : MonoBehaviour {
    
     private float MaxSize;
     private int EnemyHP;
+
     private float EnemySpeed;
     private Rigidbody2D rb;
+    private Animator Ator;
     public GameObject EnemyTarget;
-    Sprite Visual;
+    
     //Sprite
     private SpriteRenderer SR;
     Color Color = Color.white;
@@ -29,33 +34,39 @@ public class Enemies : MonoBehaviour {
     public bool Spawning = true;
     // Use this for initialization
 
+    
 
-  /*  public Enemies(string inTyp, Vector2  inPos) {
+    /*  public Enemies(string inTyp, Vector2  inPos) {
 
-        transform.localPosition = inPos;
-        
+          transform.localPosition = inPos;
 
 
-    }*/
+
+      }*/
 
 
 
     void Start () {
+
+        WH = PW.GetComponent<WormHead>();
+        
+
         randomizer();
+        Ator = gameObject.GetComponent<Animator>();
 
 
-        rb = GetComponent<Rigidbody2D>();
+         rb = GetComponent<Rigidbody2D>();
        // Size = gameObject.transform.lo;
 
         SR = gameObject.GetComponent<SpriteRenderer>();
         SR.color = Color;
-
+        
 
         Spawning = true;
         Color.a = 0;
         
        Rotation();
-        
+         
         
     }
 
@@ -67,7 +78,7 @@ public class Enemies : MonoBehaviour {
         Typs();
         transform.localScale = new Vector2(EnemiesSize, EnemiesSize);
         Fadein();
-
+        
 
     }
 
@@ -124,9 +135,11 @@ public class Enemies : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Wurm") {
+        if (col.gameObject.tag == "Worm"&& EnemyTyp != "Mutation") {
 
             EnemyTyp = "Mutation";
+            transform.parent = col.transform;
+            WH.gotDmg(MaxSize);
 
         }
     }
@@ -143,6 +156,10 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 1f;
                 EnemyHP = 1;
                 EnemySpeed = 1f;
+                
+                
+
+
                 break;
 
             case "Moth":
@@ -150,6 +167,7 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 0.5f;
+                //SR.sprite = Resources.Load("Art/Enemies/moth_1", typeof (Sprite)) as Sprite;
                 break;
 
 
@@ -158,6 +176,7 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 0.1f;
+                //SR.sprite = Resources.Load("Art/Enemies/spikeball_1", typeof(Sprite)) as Sprite;
                 break;
 
 
@@ -166,6 +185,7 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 0f;
+                //SR.sprite = Resources.Load("Art/Enemies/mushroom1", typeof(Sprite)) as Sprite;
                 break;
 
             case "Wasps":
@@ -173,13 +193,15 @@ public class Enemies : MonoBehaviour {
                 MaxSize = 3f;
                 EnemyHP = 1;
                 EnemySpeed = 0.5f;
+                //SR.sprite = Resources.Load("Art/Enemies/wasp_1", typeof(Sprite)) as Sprite;
                 break;
 
             case "Mutation":
-                MaxVelocity = 0.3f;
+                MaxVelocity = 0f;
                 MaxSize = 1f;
                 EnemyHP = 1;
-                EnemySpeed = 0.5f;
+                EnemySpeed = 0f;
+                //SR.sprite = Resources.Load("Art/Enemies/wasp_1", typeof(Sprite)) as Sprite;
                 break;
 
             default: 
