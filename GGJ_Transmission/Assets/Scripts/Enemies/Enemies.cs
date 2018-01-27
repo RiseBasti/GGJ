@@ -20,20 +20,10 @@ public class Enemies : MonoBehaviour
 
     //Eigenschaften
     public string EnemyTyp;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    [HideInInspector] public float EnemiesSize;
-   
-=======
-    private float EnemiesSize;
 
->>>>>>> 52d2c2ea6be975ae4d879a9843617047228d1ff8
-    private float MaxSize;
-=======
     [HideInInspector] public float EnemiesSize;
-
     [HideInInspector]  public float MaxSize;
->>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
+
     private int EnemyHP;
 
     private float EnemySpeed;
@@ -331,11 +321,9 @@ public class Enemies : MonoBehaviour
                 hpRestored = true;
             }
 
-<<<<<<< HEAD
-            EnemiesSize -= Time.deltaTime;
-=======
+
             EnemiesSize -= Time.deltaTime*eatSpeed;
->>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
+
 
             if (EnemiesSize <= 0)
             {

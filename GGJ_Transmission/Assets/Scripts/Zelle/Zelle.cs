@@ -7,10 +7,9 @@ public class Zelle : MonoBehaviour
     //Variables
     //Stats
     private float speed = 3;
-<<<<<<< HEAD
-=======
+
     private float eatSpeed = 1;
->>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
+
 
 
     //Script
@@ -81,33 +80,15 @@ public class Zelle : MonoBehaviour
             Enemies enemies = collision.GetComponent<Enemies>();
             if(enemies.EnemyTyp == "Mutation")
             {
-<<<<<<< HEAD
-                if (eating)
-                {
-                    print(eatTimer);
-                    eatTimer -= Time.deltaTime;
-                    if(eatTimer<=0)
-                    {
-                        eating = false;
-                    }
-                }
-                else
-=======
+
                 if(!eating && Input.GetAxis("Eat") != 0)
->>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
+
                 {
                     if (collision.tag == "Item")
                     {
-<<<<<<< HEAD
-                        eating = true;
-                        enemies.isEat = true;
-                        eatTimer = enemies.EnemiesSize;
-                        collision.transform.position = transform.position;
-                        collision.transform.parent = transform;
-=======
                         transform.localScale += new Vector3(0.1f, 0.1f, 0);
                         eatSpeed += 0.1f;
->>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
+
                     }
                     eating = true;
                     enemies.isEat = true;

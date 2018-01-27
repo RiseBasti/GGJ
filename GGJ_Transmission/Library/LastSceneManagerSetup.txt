@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Menu.unity
-=======
-- path: Assets/Scenes/Roman.unity
->>>>>>> 5f9ed7b98fcf7e17deb27984ab417201bf6b0670
+- path: Assets/Scenes/Pascal.unity
   isLoaded: 1
   isActive: 1
