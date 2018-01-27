@@ -238,7 +238,7 @@ public class Enemies : MonoBehaviour
     {
 
 
-        int R = Random.Range(0, 30);
+        int R = Random.Range(0, 31);
 
         if (R < 10)
         {
@@ -274,7 +274,7 @@ public class Enemies : MonoBehaviour
 
         }
 
-        if (R > 27 && R < 30)
+        if (R > 27 && R < 31)
         {
             EnemyTyp = "Beatle";
 
