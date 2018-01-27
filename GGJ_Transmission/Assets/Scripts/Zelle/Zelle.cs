@@ -7,7 +7,6 @@ public class Zelle : MonoBehaviour
     //Variables
     //Stats
     private float speed = 3;
-    private float eatCD = 3;
 
 
     //Script
@@ -65,7 +64,6 @@ public class Zelle : MonoBehaviour
             Enemies enemies = collision.GetComponent<Enemies>();
             if(enemies.EnemyTyp == "Mutation")
             {
-                print(eating);
                 if (eating)
                 {
                     print(eatTimer);
@@ -81,7 +79,7 @@ public class Zelle : MonoBehaviour
                     {
                         eating = true;
                         enemies.isEat = true;
-                        eatTimer = eatCD;
+                        eatTimer = enemies.EnemiesSize;
                         collision.transform.position = transform.position;
                         collision.transform.parent = transform;
                     }

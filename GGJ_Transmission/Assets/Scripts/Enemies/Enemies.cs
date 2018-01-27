@@ -17,7 +17,7 @@ public class Enemies : MonoBehaviour {
 
     //Eigenschaften
     public string EnemyTyp;
-    private float EnemiesSize;
+    [HideInInspector] public float EnemiesSize;
    
     private float MaxSize;
     private int EnemyHP;
@@ -282,7 +282,7 @@ public class Enemies : MonoBehaviour {
 
         if (isEat) {
 
-            EnemiesSize -= 0.1f;
+            EnemiesSize -= Time.deltaTime;
 
             if (EnemiesSize <= 0)
             {

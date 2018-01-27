@@ -119,7 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PW: {fileID: 1358203604536516, guid: 3804ce927272b834790b5d1983351aef, type: 2}
   EnemyTyp: 
-  EnemyTarget: {fileID: 1150104299687024, guid: 594ee45a26bb3314d890d6cf12e434f3,
+  EnemiesSize: 0
+  EnemyTarget: {fileID: 1387276829171588, guid: 52f85a262d36e1e49bc4153d7c8eec22,
     type: 2}
   isEat: 0
   boost: 1

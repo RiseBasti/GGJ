@@ -280,6 +280,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1387276829171588, guid: 52f85a262d36e1e49bc4153d7c8eec22, type: 2}
+      propertyPath: m_TagString
+      value: Zelle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52f85a262d36e1e49bc4153d7c8eec22, type: 2}
   m_IsPrefabParent: 0

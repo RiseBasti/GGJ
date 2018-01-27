@@ -6,9 +6,9 @@ public class WormHead : MonoBehaviour
 {
     //Variables
     //Stats
-    private float hp = 10;
+    private float hp;  //Depends on the Size of the Worm (hp = childNum)
     private float speed = 5;
-    private int childNum = 7;
+    private int childNum = 10;
     private float distMin = 0.45f;
     private float distMax = 0.65f;
 
@@ -36,6 +36,7 @@ public class WormHead : MonoBehaviour
 	// Use this for initialization
 	private void Start ()
     {
+        hp = childNum;
         newParent = gameObject;
         rb = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
@@ -49,6 +50,7 @@ public class WormHead : MonoBehaviour
             newChild.GetComponent<WormChild>().wormHead = wormHead;
             newChild.GetComponent<WormChild>().speed = speed;
             newChild.GetComponent<SpriteRenderer>().sortingOrder = -i;
+            newChild.GetComponent<WormChild>().size = Random.Range(0.9f, 1.1f);
 
             if (i<childNum-1)
             {
@@ -56,6 +58,7 @@ public class WormHead : MonoBehaviour
                 newChild.GetComponent<WormChild>().spriteEnd = false;
                 newChild.GetComponent<WormChild>().distMin = distMin;
                 newChild.GetComponent<WormChild>().distMax = distMax;
+                
             }
             else
             {
@@ -107,5 +110,36 @@ public class WormHead : MonoBehaviour
     public void GotHealed(float cont)
     {
         contamination -= cont;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Item")
+        {
+            //Transform OLD LastChild to NEW MiddleChild
+            newParent.GetComponent<WormChild>().spriteEnd = false;
+            newParent.GetComponent<WormChild>().distMin = distMin;
+            newParent.GetComponent<WormChild>().distMax = distMax;
+
+            //NewChild with old Parent
+            GameObject newChild = Instantiate(child, newParent.transform.position, Quaternion.identity);
+            newChild.GetComponent<WormChild>().parent = newParent;
+            newChild.GetComponent<WormChild>().wormHead = wormHead;
+            newChild.GetComponent<WormChild>().speed = speed;
+            newChild.GetComponent<SpriteRenderer>().sortingOrder = -childNum;
+            newChild.GetComponent<WormChild>().size = Random.Range(0.9f, 1.1f);
+
+            //NEW LastChild
+            newChild.GetComponent<WormChild>().spriteEnd = true;
+            newChild.GetComponent<WormChild>().distMin = distMin + 0.1f;
+            newChild.GetComponent<WormChild>().distMax = distMax + 0.1f;
+
+
+            newParent = newChild;
+
+            childNum += 1;
+            hp = childNum;
+
+        }
     }
 }

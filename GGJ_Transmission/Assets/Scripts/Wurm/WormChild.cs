@@ -6,12 +6,12 @@ public class WormChild : MonoBehaviour
 {
     //Variables
     //Stats
-    //...
 
     //Script
     [HideInInspector] public float speed;
     [HideInInspector] public float distMin;
     [HideInInspector] public float distMax;
+    [HideInInspector] public float size;
 
     private Vector2 direction = new Vector2(0,0);
     private float rotation = 0;
@@ -37,7 +37,8 @@ public class WormChild : MonoBehaviour
 
         animator = GetComponent<Animator>();
         animator.SetBool("end", spriteEnd);
-        print(animator.GetBool("end"));
+
+        transform.localScale = new Vector3(size, size, 1);
 	}
 	
 	// Update is called once per frame
