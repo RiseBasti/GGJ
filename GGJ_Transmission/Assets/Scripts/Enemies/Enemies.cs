@@ -29,6 +29,8 @@ public class Enemies : MonoBehaviour
     private WormHead wormHead;
     private ParticleSystem ps;
     private GameObject EnemyTarget;
+    private AudioClip Audio;
+    private AudioSource AuSo;
     
 
     //Components
@@ -62,8 +64,11 @@ public class Enemies : MonoBehaviour
         anima = gameObject.GetComponent<Animator>();
         ps = GetComponent<ParticleSystem>();
         rb = GetComponent<Rigidbody2D>();
+        Audio = GetComponent<AudioClip>();
+        AuSo = GetComponent<AudioSource>();
+        Audio = (Resources.Load("Item Pick Up", typeof(AudioClip))) as AudioClip;
         // Size = gameObject.transform.lo;
-
+        AuSo.Stop();
         sr = gameObject.GetComponent<SpriteRenderer>();
 
         randomizer();
@@ -125,11 +130,13 @@ public class Enemies : MonoBehaviour
     {
         if (isEat) { return; }
         ps.Play();
+        
         if (EnemyTyp == "Beatle")
         {
 
             if (col.gameObject.tag == "WormHead")
             {
+               
                 transform.parent = col.transform;
                 EnemyTyp = "Mutation";
                 Typs();
@@ -142,7 +149,7 @@ public class Enemies : MonoBehaviour
         }
         else if((col.gameObject.tag == "Worm" || col.gameObject.tag == "WormHead") && EnemyTyp != "Mutation")
         {
-            
+            AuSo.Play();
             transform.parent = col.transform;
             EnemyTyp = "Mutation";
             Typs();
@@ -166,6 +173,7 @@ public class Enemies : MonoBehaviour
                 anima.SetBool("isAnt", true);
                 enemyColor = new Color(1, 0, 0);
                 boxCol.size = new Vector2(0.25f,0.4f);
+                
                 break;
 
             case "Moth":
