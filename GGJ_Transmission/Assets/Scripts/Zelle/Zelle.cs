@@ -11,6 +11,8 @@ public class Zelle : MonoBehaviour
 
     private float eatSpeed = 1;
 
+    public float score = 0;
+
 
 
     //Script
@@ -85,7 +87,7 @@ public class Zelle : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy" || collision.tag == "Item")
+        if(collision.tag == "Enemy")
         {
             Enemies enemies = collision.GetComponent<Enemies>();
             if(enemies.EnemyTyp == "Mutation")
@@ -94,8 +96,9 @@ public class Zelle : MonoBehaviour
                 if(!eating && Input.GetAxis("Eat") != 0)
 
                 {
-                    transform.localScale += new Vector3(0.1f, 0.1f, 0);
-                    eatSpeed += 0.1f;
+                    score += enemies.MaxSize * 10;
+                    transform.localScale += new Vector3(enemies.MaxSize / 100, enemies.MaxSize / 100, 0);
+                    eatSpeed += enemies.MaxSize/100;
                     eating = true;
                     enemies.isEat = true;
                     enemies.eatSpeed = eatSpeed;

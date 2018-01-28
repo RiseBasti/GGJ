@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour {
 
     public GameObject Enemy;
     public GameObject Camera;
+    public GameObject zelle;
+    private float score = 0;
 
     private float timer = 1;
 
@@ -20,12 +22,13 @@ public class EnemySpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        score = zelle.GetComponent<Zelle>().score;
 
         timer -= Time.deltaTime;
 
         if (timer <= 0) {
             Spawner();
-            timer = 0.5f;
+            timer = Mathf.Clamp(0.5f - (score/10000),0.1f,0.5f);
 
         }
     }

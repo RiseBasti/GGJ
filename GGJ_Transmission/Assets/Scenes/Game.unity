@@ -118,7 +118,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1358203604536516, guid: 3804ce927272b834790b5d1983351aef,
     type: 2}
   m_PrefabInternal: {fileID: 1250476180}
-<<<<<<< HEAD
 --- !u!82 &49507649
 AudioSource:
   m_ObjectHideFlags: 0
@@ -199,13 +198,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-=======
---- !u!1 &136989389 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1340490703213590, guid: b4d578806ecf5d8449770069ac2064a2,
-    type: 2}
-  m_PrefabInternal: {fileID: 383193501}
->>>>>>> 8afc1d1ba57337afe6431f5c9cd5aed33be35b88
 --- !u!1 &165368170
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +406,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4117198583767192, guid: 52f85a262d36e1e49bc4153d7c8eec22, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4117198583767192, guid: 52f85a262d36e1e49bc4153d7c8eec22, type: 2}
       propertyPath: m_LocalPosition.z
@@ -592,11 +584,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4162157235597264, guid: 3804ce927272b834790b5d1983351aef, type: 2}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162157235597264, guid: 3804ce927272b834790b5d1983351aef, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+=======
       value: 601
       objectReference: {fileID: 0}
     - target: {fileID: 4162157235597264, guid: 3804ce927272b834790b5d1983351aef, type: 2}
       propertyPath: m_LocalPosition.y
       value: 247
+>>>>>>> 6d0487a02ff9b2a1c92cecbd5063ff6f7ae2093c
       objectReference: {fileID: 0}
     - target: {fileID: 4162157235597264, guid: 3804ce927272b834790b5d1983351aef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -732,6 +732,11 @@ Prefab:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 1975313003}
+    - target: {fileID: 114470383460796108, guid: b664a10a674e32e43a229cf648744c98,
+        type: 2}
+      propertyPath: zelle
+      value: 
+      objectReference: {fileID: 1680320618}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b664a10a674e32e43a229cf648744c98, type: 2}
   m_IsPrefabParent: 0
