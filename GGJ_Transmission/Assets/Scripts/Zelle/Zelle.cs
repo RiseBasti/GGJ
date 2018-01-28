@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.SceneManagement;
 
 public class Zelle : MonoBehaviour
 {
+
+    //Score
+    
     //Variables
     //Stats
     private float speed = 3;
 
     private float eatSpeed = 1;
 
-    public float score = 0;
+    public int score = 0;
+    
 
 
 
@@ -40,8 +45,7 @@ public class Zelle : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
-
-        //Debug.Log(dead);
+        
 
         if (!dead)
         {
@@ -52,7 +56,8 @@ public class Zelle : MonoBehaviour
         else
 
         {
-            SceneManager.LoadScene("GameOver");
+            
+            SceneManager.LoadScene("GameOver"); 
         }
 	}
 
@@ -96,7 +101,7 @@ public class Zelle : MonoBehaviour
                 if(!eating && Input.GetAxis("Eat") != 0)
 
                 {
-                    score += enemies.MaxSize * 10;
+                    score += (int)enemies.MaxSize * 10;
                     transform.localScale += new Vector3(enemies.MaxSize / 100, enemies.MaxSize / 100, 0);
                     eatSpeed += enemies.MaxSize/100;
                     eating = true;
