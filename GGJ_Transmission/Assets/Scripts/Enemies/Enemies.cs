@@ -81,8 +81,6 @@ public class Enemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log(enemyColor);
         Deaying();
        
         Fadein();
@@ -125,17 +123,24 @@ public class Enemies : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(EnemyTyp == "Item" && col.gameObject.tag == "WormHead")
+        if (isEat) { return; }
+        ps.Play();
+        if (EnemyTyp == "Beatle")
         {
-            transform.parent = col.transform;
-            EnemyTyp = "Mutation";
-            Typs();
-            ps.Play();
-            //ps.Stop();
-            hpRestored = true;
-            isEat = true;
+
+            if (col.gameObject.tag == "WormHead")
+            {
+                transform.parent = col.transform;
+                EnemyTyp = "Mutation";
+                Typs();
+                
+               
+                hpRestored = true;
+                isEat = true;
+            }
+
         }
-        if ((col.gameObject.tag == "Worm" || col.gameObject.tag == "WormHead") && EnemyTyp != "Mutation")
+        else if((col.gameObject.tag == "Worm" || col.gameObject.tag == "WormHead") && EnemyTyp != "Mutation")
         {
             
             transform.parent = col.transform;
@@ -143,8 +148,8 @@ public class Enemies : MonoBehaviour
             Typs();
             wormHead.GotDmg(MaxSize);
             boxCol.enabled = true;
-            ps.Play();
-            //ps.Stop();
+            
+            
 
 
         }
