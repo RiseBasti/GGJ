@@ -27,7 +27,7 @@ public class Enemies : MonoBehaviour
     //Objects
     private GameObject playerWorm;
     private WormHead wormHead;
-
+    private ParticleSystem ps;
     private GameObject EnemyTarget;
     
 
@@ -46,6 +46,7 @@ public class Enemies : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
 
         playerWorm = GameObject.FindGameObjectWithTag("WormHead");
         wormHead = playerWorm.GetComponent<WormHead>();
@@ -59,7 +60,7 @@ public class Enemies : MonoBehaviour
         
         Ator = gameObject.GetComponent<Animation>();
         anima = gameObject.GetComponent<Animator>();
-
+        ps = GetComponent<ParticleSystem>();
         rb = GetComponent<Rigidbody2D>();
         // Size = gameObject.transform.lo;
 
@@ -80,8 +81,10 @@ public class Enemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log(enemyColor);
         Deaying();
-        transform.localScale = new Vector2(EnemiesSize, EnemiesSize);
+       
         Fadein();
 
         if(deathTimer>0 && EnemyTyp != "Mutation")
@@ -122,12 +125,27 @@ public class Enemies : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if ((col.gameObject.tag == "Worm" || col.gameObject.tag == "WormHead") && EnemyTyp != "Mutation")
+        if(EnemyTyp == "Item" && col.gameObject.tag == "WormHead")
         {
+            transform.parent = col.transform;
             EnemyTyp = "Mutation";
             Typs();
+            ps.Play();
+            //ps.Stop();
+            hpRestored = true;
+            isEat = true;
+        }
+        if ((col.gameObject.tag == "Worm" || col.gameObject.tag == "WormHead") && EnemyTyp != "Mutation")
+        {
+            
             transform.parent = col.transform;
+            EnemyTyp = "Mutation";
+            Typs();
             wormHead.GotDmg(MaxSize);
+            boxCol.enabled = true;
+            ps.Play();
+            //ps.Stop();
+
 
         }
     }
@@ -185,10 +203,12 @@ public class Enemies : MonoBehaviour
                 break;
 
             case "Mutation":
+
                 EnemySpeed = 0f;
                 deathTimer = 100;
                 anima.SetBool("isMutatet", true);
                 enemyColor.a = 1;
+                isEat = false;
                 sr.color = enemyColor;
                 boxCol.size = new Vector2(1, 1);
                 boxCol.offset = new Vector2(0, 0);
@@ -210,14 +230,16 @@ public class Enemies : MonoBehaviour
                 break;
 
         }
-
+        
     }
     void Fadein()
     {
+
         if (Spawning == true)
         {
             enemyColor.a += 0.01f;
             EnemiesSize += 0.01f;
+            transform.localScale = new Vector2(EnemiesSize, EnemiesSize);
             boxCol.enabled = false;
 
             if (EnemiesSize > MaxSize)
@@ -298,6 +320,7 @@ public class Enemies : MonoBehaviour
 
 
             EnemiesSize -= Time.deltaTime * eatSpeed;
+            transform.localScale = new Vector2(EnemiesSize, EnemiesSize);
 
 
             if (EnemiesSize <= 0)
