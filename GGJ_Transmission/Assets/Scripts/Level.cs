@@ -16,6 +16,12 @@ public class Level : MonoBehaviour {
         SceneManager.LoadScene("Menu");
     }
 
+
+    public void Controls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
+
     public void Quit()
     {
         Quit();
