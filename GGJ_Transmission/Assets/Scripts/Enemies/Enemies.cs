@@ -23,6 +23,7 @@ public class Enemies : MonoBehaviour
     public bool boost = true;
     public bool Spawning = true;
     public bool collected = false;
+    private bool reached = false;
 
     //Objects
     private GameObject playerWorm;
@@ -88,7 +89,7 @@ public class Enemies : MonoBehaviour
     {
         Deaying();
        
-        Fadein();
+        
 
         if(deathTimer>0 && EnemyTyp != "Mutation")
         {
@@ -101,6 +102,10 @@ public class Enemies : MonoBehaviour
             }
         }
 
+
+            Fadein();
+
+
     }
 
 
@@ -110,17 +115,17 @@ public class Enemies : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotation-90);
     }
-    void Detection()
+    void Detection(Vector3 aim, float dist)
     {
+        float d = Vector2.Distance(aim, transform.localPosition);
 
-        float d = Vector2.Distance(EnemyTarget.transform.position, transform.position);
-
-        if (EnemyTyp != "Beatle" && EnemyTyp != "Mushrooms" && d < 5)
+        if (EnemyTyp != "Beatle" && EnemyTyp != "Mushroom" && d < dist)
         {
-            direction = new Vector2(EnemyTarget.transform.position.x - transform.position.x, EnemyTarget.transform.position.y - transform.position.y).normalized;
-            Rotation();
-        }
+            direction = new Vector2(aim.x - transform.localPosition.x, aim.y - transform.localPosition.y).normalized;
 
+            Rotation();
+            Speed();
+        }
     }
     void Speed()
     {
@@ -128,7 +133,8 @@ public class Enemies : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (isEat) { return; }
+        if (isEat || EnemyTyp == "Mutation") { return; }
+        colWormPart = col.gameObject;
         ps.Play();
         
         if (EnemyTyp == "Beatle")
@@ -217,7 +223,7 @@ public class Enemies : MonoBehaviour
 
             case "Mutation":
 
-                EnemySpeed = 0f;
+                EnemySpeed = 2f;
                 deathTimer = 100;
                 anima.SetBool("isMutatet", true);
                 enemyColor.a = 1;
@@ -266,7 +272,7 @@ public class Enemies : MonoBehaviour
         {
             boxCol.enabled = true;
             Speed();
-            Detection();
+            Detection(EnemyTarget.transform.position, 5);
         }
     }
     void randomizer()
