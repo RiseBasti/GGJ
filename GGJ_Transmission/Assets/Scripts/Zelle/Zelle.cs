@@ -7,16 +7,20 @@ using UnityEngine.SceneManagement;
 public class Zelle : MonoBehaviour
 {
 
-    //Score
-    
+    //Sound
+    private AudioClip Audio;
+    private AudioSource AuSo;
+
     //Variables
+    private SpriteRenderer SR;
     //Stats
     private float speed = 3;
 
     private float eatSpeed = 1;
 
     public int score = 0;
-    
+    //level
+    private Scene scene;
 
 
 
@@ -27,6 +31,7 @@ public class Zelle : MonoBehaviour
     private bool eating = false;
     private float eatTimer = 0;
     public bool dead = false;
+    private bool sceneloaded = false;
 
     //Objects
 
@@ -39,13 +44,19 @@ public class Zelle : MonoBehaviour
     // Use this for initialization
     private void Start ()
     {
+        
         rb = GetComponent<Rigidbody2D>();
+        Audio = GetComponent<AudioClip>();
+        AuSo = GetComponent<AudioSource>();
+        SR = GetComponent<SpriteRenderer>();
+        scene = SceneManager.GetActiveScene();
+
     }
 	
 	// Update is called once per frame
 	private void Update ()
     {
-        
+
 
         if (!dead)
         {
@@ -53,11 +64,14 @@ public class Zelle : MonoBehaviour
             Move();
             Eat();
         }
-        else
-
+        else if (sceneloaded == false)
         {
+                print(scene.name);
+                DontDestroyOnLoad(gameObject);
+                SceneManager.LoadScene("GameOver");
+                sceneloaded = true;
+                SR.enabled = false;
             
-            SceneManager.LoadScene("GameOver"); 
         }
 	}
 
@@ -101,6 +115,7 @@ public class Zelle : MonoBehaviour
                 if(!eating && Input.GetAxis("Eat") != 0)
 
                 {
+                    AuSo.Play();
                     score += (int)enemies.MaxSize * 10;
                     transform.localScale += new Vector3(enemies.MaxSize / 100, enemies.MaxSize / 100, 0);
                     eatSpeed += enemies.MaxSize/100;
@@ -114,9 +129,11 @@ public class Zelle : MonoBehaviour
             }
             else
             {
+                
                 enemies.EnemyTyp = "Mutation";
                 collision.transform.parent = transform;
                 dead = true;
+
             }
         }
     }

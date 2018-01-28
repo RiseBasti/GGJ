@@ -287,11 +287,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114395878280106112, guid: 52f85a262d36e1e49bc4153d7c8eec22,
-        type: 2}
-      propertyPath: Score
-      value: 
-      objectReference: {fileID: 1537574596}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52f85a262d36e1e49bc4153d7c8eec22, type: 2}
   m_IsPrefabParent: 0
@@ -758,3 +753,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zelle: {fileID: 1244496114}
+  FinalScore: 0
